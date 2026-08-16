@@ -1,0 +1,16 @@
+.ending_soon {
+  width: 1042px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  & p {
+    font-size: 32px;
+    font-weight: 500;
+  } 
+}
+
+#genEndingSurvey {
+  display: flex;
+  justify-content: space-between;
+}
