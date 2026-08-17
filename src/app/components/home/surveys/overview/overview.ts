@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { DropdownMenu } from '../../../shared/dropdown-menu/dropdown-menu';
 
 @Component({
   selector: 'app-overview',
-  imports: [],
+  imports: [DropdownMenu],
   templateUrl: './overview.html',
   styleUrl: './overview.scss',
 })
