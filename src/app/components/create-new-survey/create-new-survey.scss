@@ -1,0 +1,35 @@
+@use 'base/base' as base;
+
+body {
+  display: flex;
+  justify-content: center;
+  margin-top: 72px;
+}
+
+main {
+  background-color: base.$dark-purple;
+  border-radius: 5px 100px 5px 5px;
+  box-sizing: border-box;
+  padding: 40px 54px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.cancel-button {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.form {
+  width: 1052px;
+  height: 500px;
+  background-color: #433349;
+  border-radius: 5px 80px 5px 5px;
+}

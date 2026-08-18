@@ -1,3 +1,15 @@
+@use 'base/base' as base;
+
+:host {
+  display: block;
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding: 39px 111px;
+  width: 100%;
+  background-color: base.$dark-purple;
+  color: base.$light-orange;
+}
+
 .hero {
   display: block;
   margin-top: 92px;
