@@ -1,3 +1,9 @@
 <button>
   <ng-content></ng-content>
+  @if (this.path == "/") {
+    <img id="buttonImgAdd" src="/assets/icons/add.png" alt="add icon">
+  }
+  @if (this.path == "/create_new_survey") {
+    <img id="buttonImgCheck" src="/assets/icons/check_icon.png" alt="publish icon">
+  }
 </button>

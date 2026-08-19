@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject, Inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'poll-app-button',
@@ -6,4 +7,8 @@ import { Component } from '@angular/core';
   templateUrl: './button.html',
   styleUrl: './button.scss',
 })
-export class Button {}
+export class Button {
+  private readonly router = inject(Router);
+  path = this.router.url;
+
+}

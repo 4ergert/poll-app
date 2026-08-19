@@ -10,5 +10,5 @@ import { RouterLink } from '@angular/router';
   styleUrl: './hero-description.scss',
 })
 export class HeroDescription {
-  path = "";
+
 }

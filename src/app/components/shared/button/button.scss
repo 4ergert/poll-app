@@ -10,5 +10,36 @@ button {
   display: flex;
   align-items: center;
   gap: 0;
-  transition: gap 0.2s ease;
+  transition: gap 0.5s ease;
+}
+
+#buttonImgAdd, #buttonImgCheck {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0s linear 0.4s;
+}
+
+
+button:hover {
+  background-color: #ffb770;
+  cursor: pointer;
+  gap: 12px;
+}
+
+button:hover #buttonImgAdd {
+  width: 24px;
+  height: 24px;
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+button:hover #buttonImgCheck {
+  width: 18px;
+  height: 18px;
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
 }
