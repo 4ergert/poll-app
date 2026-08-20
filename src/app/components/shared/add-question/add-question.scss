@@ -1,3 +1,10 @@
+.question {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 64px;
+}
+
 label {
   display: block;
   margin-top: 8px;
@@ -21,9 +28,45 @@ img {
 }
 
 p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   color: #fff;
   font-family: Mulish;
   font-weight: 700;
   font-style: Regular;
   font-size: 20px;
+}
+
+.answer_and_add_next_question {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+
+    input {
+    flex: 1;
+  }
+}
+
+.question_and_answer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.add_next_question {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.input_with_delete {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 8px;
+
+  input {
+    flex: 1;
+  }
 }

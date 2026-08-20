@@ -6,7 +6,8 @@
     "start": "ng serve -o",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "open-links": "powershell -NoProfile -Command \"Get-Content 'link.txt' | Where-Object { $_.Trim() } | ForEach-Object { Start-Process $_.Trim() }\""
   },
   "private": true,
   "packageManager": "npm@11.9.0",

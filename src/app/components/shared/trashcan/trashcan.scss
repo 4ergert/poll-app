@@ -1,0 +1,15 @@
+.trashcan {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  background: url("/assets/icons/trashcan.png") center / contain no-repeat;
+  cursor: pointer;
+}
+
+.trashcan:hover,
+.trashcan:focus-visible {
+  background-image: url("/assets/icons/trashcan_hovered.png");
+}

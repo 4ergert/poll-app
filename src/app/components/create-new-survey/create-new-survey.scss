@@ -2,11 +2,12 @@
 
 :host {
   display: flex;
+  width: 100%;
   justify-content: center;
 }
 
 main {
-  width: min(100%, 1160px);
+  width: min(100%, 1166px);
   background-color: base.$dark-purple;
   border-radius: 5px 100px 5px 5px;
   box-sizing: border-box;

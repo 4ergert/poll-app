@@ -1,16 +1,27 @@
 <section class="question">
-  <label for="question">{{ questionNumber }}. Question</label>
-  <input id="question" type="text">
 
-  <label for="answer">Answer</label>
+  <div class="answer_and_add_next_question">
+    <label for="question">{{ questionNumber }}. Question</label>
+    <p class="input_with_delete">
+      <input id="question" type="text">
+      <trashcan />
+    </p>
 
-  @for (item of answerNumbers.slice(0, answersCount ); track $index) {
-    <p>{{ item }}. <input id="answer-{{ $index }}" type="text" name="answer-{{ $index }}"></p>
-  }
+    <label for="answer">Answer</label>
+    <div class="question_and_answer">
+      @for (item of answerNumbers.slice(0, answersCount ); track $index) {
+      <p class="input_with_delete">{{ item }}. <input id="answer-{{ $index }}" type="text" name="answer-{{ $index }}">
+        <trashcan />
+      </p>
+      }
+    </div>
+  </div>
+  
+  <div class="add_next_question">
+    <sec-button (click)="addQuestion()">
+      Add next question
+      <img src="assets/icons/add_icon.png" alt="Add Icon">
+    </sec-button>
+  </div>
 
 </section>
-
-<sec-button (click)="addQuestion()">
-  Add next question
-  <img src="assets/icons/add_icon.png" alt="Add Icon">
-</sec-button>

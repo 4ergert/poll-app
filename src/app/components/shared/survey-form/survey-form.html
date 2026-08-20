@@ -2,17 +2,34 @@
 
   <fieldset>
     <section class="fieldset_header">
-      <div>
+      <div class="fieldset_header__left">
         <label for="name">Survey Name</label>
-        <input id="name" formControlName="name" type="text">
+        <div class="input_with_delete">
+          <input id="name" formControlName="name" type="text" />
+          <trashcan />
+        </div>
 
-        <label for="date">Set end date</label>
-        <input id="date" formControlName="date" type="date">
+        <div class="date_and_category">
+          <div>
+            <label for="date">Set end date</label>
+            <div class="input_with_delete">
+              <input id="date" formControlName="date" type="date">
+              <trashcan />
+            </div>
+          </div>
+        
+          <select name="choose category" id="chooseCategory">
+            <option value="choose category" disabled selected>Choose category</option>
+          </select>
+        </div>
       </div>
 
-      <div>
+      <div class="fieldset_header__right">
         <label for="describing">Describing text</label>
-        <textarea id="describing" formControlName="describing"></textarea>
+        <div class="input_with_delete">
+          <textarea id="describing" formControlName="describing"></textarea>
+          <trashcan />
+        </div>
       </div>
     </section>
 
@@ -22,7 +39,7 @@
   </fieldset>
 
 
-  
+
   <section class="submit_button">
     <poll-app-button icon="check">Publish</poll-app-button>
   </section>

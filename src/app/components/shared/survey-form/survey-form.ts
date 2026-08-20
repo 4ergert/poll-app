@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { Button } from '../button/button';
 import { AddQuestion } from '../add-question/add-question';
+import { Trashcan } from '../trashcan/trashcan';
 
 @Component({
   selector: 'survey-form',
-  imports: [ReactiveFormsModule, Button, AddQuestion],
+  imports: [ReactiveFormsModule, Button, AddQuestion, Trashcan],
   templateUrl: './survey-form.html',
   styleUrl: './survey-form.scss',
 })
