@@ -8,4 +8,5 @@ import { Component, input } from '@angular/core';
 })
 export class Button {
   readonly icon = input<'add' | 'check'>('add');
+  readonly type = input<'button' | 'submit'>('button');
 }

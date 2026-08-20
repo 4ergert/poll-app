@@ -1,28 +1,28 @@
-<section class="question" [formGroup]="formGroup()">
+<section class="question" [formGroup]="questionForm()">
 
-  <div class="answer_and_add_next_question">
-    <label for="question">{{ questionNumber }}. Question</label>
+  <div class="question-content">
+    <div class="question_header">
+      <label for="question-{{ questionNumber() }}">{{ questionNumber() }}. Question </label>
+      <div class="multiple-choice">
+        <input id="multiple-choice-{{ questionNumber() }}" type="checkbox" formControlName="multipleChoice" />
+        <label for="multiple-choice-{{ questionNumber() }}">Allow multiple answers.</label>
+      </div>
+    </div>
     <p class="input_with_delete">
-      <input id="question" type="text" formControlName="question" name="question-{{ questionNumber }}">
+      <input id="question-{{ questionNumber() }}" type="text" formControlName="question">
       <trashcan />
     </p>
 
     <label for="answer">Answer</label>
-    <div class="question_and_answer">
-      @for (item of answerNumbers.slice(0, answersCount ); track $index) {
-      <p class="input_with_delete">{{ item }}. <input id="answer-{{ $index }}" type="text" formControlName="answer" name="answer-{{ $index }}">
+    <div class="question_and_answer" formArrayName="answers">
+      @for (answer of answers.controls; track $index) {
+      <p class="input_with_delete">{{ answerNumbers[$index] }}. <input id="answer-{{ questionNumber() }}-{{ $index }}" type="text"
+          [formControlName]="$index">
         <trashcan />
       </p>
       }
     </div>
     <add-answer-button (add)="addAnswer()"></add-answer-button>
-  </div>
-  
-  <div class="add_next_question">
-    <sec-button>
-      Add next question
-      <img src="assets/icons/add_icon.png" alt="Add Icon">
-    </sec-button>
   </div>
 
 </section>

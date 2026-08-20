@@ -1,23 +1,32 @@
 import { Component, input } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { SecButton } from '../sec-button/sec-button';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Trashcan } from '../trashcan/trashcan';
 import { AddAnswerButton } from '../add-answer-button/add-answer-button';
 
+export type QuestionForm = FormGroup<{
+  question: FormControl<string | null>;
+  multipleChoice: FormControl<boolean | null>;
+  answers: FormArray<FormControl<string | null>>;
+}>;
+
 @Component({
   selector: 'add-question',
-  imports: [ReactiveFormsModule, SecButton, Trashcan, AddAnswerButton],
+  imports: [ReactiveFormsModule, Trashcan, AddAnswerButton],
   templateUrl: './add-question.html',
   styleUrl: './add-question.scss',
 })
 export class AddQuestion {
-  readonly formGroup = input.required<FormGroup>();
+  readonly questionForm = input.required<QuestionForm>();
+  readonly questionNumber = input.required<number>();
   readonly answerNumbers = ["A", "B", "C", "D", "E", "F"];
-  answersCount = 2;
 
   addAnswer() {
-    if (this.answersCount < this.answerNumbers.length) this.answersCount++;
+    if (this.answers.controls.length < this.answerNumbers.length) {
+      this.answers.push(new FormControl(''));
+    }
   }
 
-  questionNumber = 1;
+  get answers() {
+    return this.questionForm().controls.answers;
+  }
 }

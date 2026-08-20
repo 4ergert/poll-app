@@ -34,13 +34,24 @@
     </section>
 
     <section class="add_question" id="addQuestion">
-      <add-question [formGroup]="surveyForm"></add-question>
+      @for (questionForm of questions.controls; track $index) {
+        <add-question
+          [questionForm]="questionForm"
+          [questionNumber]="$index + 1"
+        ></add-question>
+      }
+      <div class="add-next-question">
+        <sec-button (click)="addQuestion()">
+          Add next question
+          <img src="assets/icons/add_icon.png" alt="Add Icon">
+        </sec-button>
+      </div>
     </section>
   </fieldset>
 
 
   <section class="submit_button">
-    <poll-app-button icon="check">Publish</poll-app-button>
+    <poll-app-button type="submit" icon="check">Publish</poll-app-button>
   </section>
 
 </form>

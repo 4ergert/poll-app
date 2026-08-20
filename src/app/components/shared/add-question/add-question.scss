@@ -1,8 +1,10 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
 .question {
-  display: flex;
-  justify-content: space-between;
   width: 100%;
-  gap: 64px;
 }
 
 label {
@@ -16,7 +18,7 @@ label {
   font-size: 18px;
 }
 
-input {
+input:not([type='checkbox']) {
   height: 37px;
   margin-bottom: 4px;
   border-radius: 5px 20px 5px 5px;
@@ -38,13 +40,37 @@ p {
   font-size: 20px;
 }
 
-.answer_and_add_next_question {
+.question-content {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 100%;
 
-    input {
+  input {
     flex: 1;
+  }
+}
+
+.question_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.multiple-choice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  input {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+  }
+
+  label {
+    margin: 0;
+    font-size: 16px;
   }
 }
 
@@ -52,12 +78,6 @@ p {
   display: flex;
   flex-direction: column;
   width: 100%;
-}
-
-.add_next_question {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
 }
 
 .input_with_delete {
