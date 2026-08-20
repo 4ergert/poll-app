@@ -1,0 +1,49 @@
+:host {
+  display: block;
+}
+
+form {
+  width: 100%;
+  max-width: 1052px;
+}
+
+label {
+  display: block;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  color: #fff;
+  font-family: Mulish;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 18px;
+}
+
+fieldset {
+  background-color: #433349;
+  border: none;
+  border-radius: 5px 80px 5px 5px;
+}
+
+.fieldset_header {
+  display: flex;
+  justify-content: space-around;
+  box-sizing: border-box;
+  padding: 40px 32px
+}
+
+input {
+  height: 37px;
+  border-radius: 5px 20px 5px 5px;
+}
+
+textarea {
+  height: 100px;
+  border-radius: 5px 20px 5px 5px;
+}
+
+.submit_button {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}

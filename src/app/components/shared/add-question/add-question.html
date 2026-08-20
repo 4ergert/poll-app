@@ -1,0 +1,16 @@
+<section class="question">
+  <label for="question">{{ questionNumber }}. Question</label>
+  <input id="question" type="text">
+
+  <label for="answer">Answer</label>
+
+  @for (item of answerNumbers.slice(0, answersCount ); track $index) {
+    <p>{{ item }}. <input id="answer-{{ $index }}" type="text" name="answer-{{ $index }}"></p>
+  }
+
+</section>
+
+<sec-button (click)="addQuestion()">
+  Add next question
+  <img src="assets/icons/add_icon.png" alt="Add Icon">
+</sec-button>

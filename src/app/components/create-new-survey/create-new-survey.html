@@ -1,8 +1,4 @@
-<body>
-  <main>
-    <cns-header></cns-header>
-    <section class="form"></section>
-    <poll-app-button>Publish</poll-app-button>
-  </main>
-
-</body>
+<main>
+  <cns-header (close)="close.emit()"></cns-header>
+  <survey-form></survey-form>
+</main>

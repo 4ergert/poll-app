@@ -1,0 +1,30 @@
+<form [formGroup]="surveyForm" (ngSubmit)="onSubmit()">
+
+  <fieldset>
+    <section class="fieldset_header">
+      <div>
+        <label for="name">Survey Name</label>
+        <input id="name" formControlName="name" type="text">
+
+        <label for="date">Set end date</label>
+        <input id="date" formControlName="date" type="date">
+      </div>
+
+      <div>
+        <label for="describing">Describing text</label>
+        <textarea id="describing" formControlName="describing"></textarea>
+      </div>
+    </section>
+
+    <section class="add_question" id="addQuestion">
+      <add-question></add-question>
+    </section>
+  </fieldset>
+
+
+  
+  <section class="submit_button">
+    <poll-app-button icon="check">Publish</poll-app-button>
+  </section>
+
+</form>

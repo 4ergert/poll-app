@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { ImgAnimation } from './img-animation/img-animation';
 import { HeroDescription } from './hero_description/hero-description';
 
@@ -8,4 +8,6 @@ import { HeroDescription } from './hero_description/hero-description';
   templateUrl: './hero.html',
   styleUrl: './hero.scss',
 })
-export class Hero {}
+export class Hero {
+  readonly createSurvey = output<void>();
+}

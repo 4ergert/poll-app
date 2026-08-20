@@ -1,14 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { Button } from '../../../shared/button/button';
-import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-hero-description',
-  imports: [Button, RouterLink],
+  imports: [Button],
   templateUrl: './hero-description.html',
   styleUrl: './hero-description.scss',
 })
 export class HeroDescription {
-
+  readonly createSurvey = output<void>();
 }

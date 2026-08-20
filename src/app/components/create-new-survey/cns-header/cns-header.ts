@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { SecButton } from '../../shared/sec-button/sec-button';
 
 @Component({
@@ -7,4 +7,6 @@ import { SecButton } from '../../shared/sec-button/sec-button';
   templateUrl: './cns-header.html',
   styleUrl: './cns-header.scss',
 })
-export class CnsHeader {}
+export class CnsHeader {
+  readonly close = output<void>();
+}

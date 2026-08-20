@@ -1,5 +1,4 @@
-import { Component, inject, Inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'poll-app-button',
@@ -8,7 +7,5 @@ import { Router } from '@angular/router';
   styleUrl: './button.scss',
 })
 export class Button {
-  private readonly router = inject(Router);
-  path = this.router.url;
-
+  readonly icon = input<'add' | 'check'>('add');
 }

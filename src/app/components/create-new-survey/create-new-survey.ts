@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
-import { Button } from '../shared/button/button';
+import { Component, output } from '@angular/core';
 import { CnsHeader } from './cns-header/cns-header';
+import { SurveyForm } from '../shared/survey-form/survey-form';
 
 @Component({
   selector: 'app-create-new-survey',
-  imports: [Button, CnsHeader],
+  imports: [CnsHeader, SurveyForm],
   templateUrl: './create-new-survey.html',
   styleUrl: './create-new-survey.scss',
 })
 export class CreateNewSurvey {
-
+  readonly close = output<void>();
 }
