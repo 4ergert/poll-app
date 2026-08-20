@@ -1,5 +1,6 @@
 $dark-purple: #35273a;
 $light-orange: #ffb770;
+$dark-orange: #ee9236;
 
 body {
   margin: 0;
@@ -17,6 +18,14 @@ h2 {
   font-size: 72px;
   font-weight: 400;
   margin: 0;
+}
+
+h3 {
+  font-family: 'Nerko One', cursive;
+  font-size: 56px;
+  font-weight: 400;
+  margin: 0;
+  color: $dark-orange;
 }
 
 p {

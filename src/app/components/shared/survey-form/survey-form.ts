@@ -11,11 +11,15 @@ import { Trashcan } from '../trashcan/trashcan';
   styleUrl: './survey-form.scss',
 })
 export class SurveyForm {
-  surveyForm = new FormGroup({
+  surveyForm = new FormGroup(
+    {
     name: new FormControl(''),
     date: new FormControl(new Date(2023, 4, 11)),
-    describing: new FormControl('')
-  });
+    describing: new FormControl(''),
+    question: new FormControl(''),
+    answer: new FormControl(''),
+    }
+  );
 
   onSubmit() {
     console.log(this.surveyForm.value);
