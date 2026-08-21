@@ -10,7 +10,7 @@
     </div>
     <p class="input_with_delete">
       <input id="question{{ questionNumber() }}" type="text" formControlName="question">
-      <trashcan />
+      <trashcan (click)="delete('question')" />
     </p>
 
     <label for="answer">Answer</label>
@@ -18,7 +18,7 @@
       @for (answer of answers.controls; track $index) {
       <p class="input_with_delete">{{ answerNumbers[$index] }}. <input id="answer{{ questionNumber() }}Index{{ $index }}" type="text"
           [formControlName]="$index">
-        <trashcan />
+        <trashcan (click)="delete('answers', $index)" />
       </p>
       }
     </div>

@@ -2,18 +2,19 @@
 
   <fieldset>
     <section class="fieldset_header">
+      <!-- Form header left -->
       <div class="fieldset_header_left">
         <label for="name">Survey Name</label>
         <div class="input_with_delete">
           <input id="name" formControlName="name" type="text" />
-          <trashcan />
+          <trashcan (click)="delete('name')"/>
         </div>
         <div class="date_and_category">
           <div>
             <label for="date">Set end date</label>
             <div class="input_with_delete">
               <input id="date" formControlName="date" type="date">
-              <trashcan />
+              <trashcan (click)="delete('date')" />
             </div>
           </div>
         
@@ -30,16 +31,16 @@
           </select>
         </div>
       </div>
-
+      <!-- Form header right -->
       <div class="fieldset_header_right">
         <label for="describing">Describing text</label>
         <div class="input_with_delete">
           <textarea id="describing" formControlName="describing"></textarea>
-          <trashcan />
+          <trashcan (click)="delete('describing')" />
         </div>
       </div>
     </section>
-
+    <!-- Questions and answers -->
     <section class="add_question" id="addQuestion">
       @for (questionForm of questions.controls; track $index) {
         <add-question

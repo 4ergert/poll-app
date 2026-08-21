@@ -48,4 +48,20 @@ export class SurveyForm {
       ]),
     });
   }
+
+  delete(field: string) {
+    switch (field) {
+      case 'name':
+        this.surveyForm.controls.name.reset('');
+        break;
+      case 'date':
+        this.surveyForm.controls.date.reset(new Date(2023, 4, 11));
+        break;
+      case 'describing':
+        this.surveyForm.controls.describing.reset('');
+        break;
+      default:
+        break;
+    }
+  }
 }

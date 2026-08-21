@@ -29,4 +29,27 @@ export class AddQuestion {
   get answers() {
     return this.questionForm().controls.answers;
   }
+
+  delete(field: string, index?: number) {
+    switch (field) {
+      case 'question':
+        this.questionForm().controls.question.reset('');
+        break;
+      case 'answers':
+        if (index !== undefined) {
+          const answerControl = this.answers.at(index);
+
+          if (answerControl.value?.trim()) {
+            answerControl.reset('');
+          } else {
+            this.answers.removeAt(index);
+          }
+        } else {
+          this.answers.clear();
+          this.answers.push(new FormControl(''));
+        }
+
+        break;
+    }
+  }
 }
