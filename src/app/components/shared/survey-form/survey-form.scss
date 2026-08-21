@@ -34,11 +34,11 @@ fieldset {
   box-sizing: border-box;
   gap: 64px;
 
-  &__left {
+  &_left {
     width: 50%;
   }
 
-  &__right {
+  &_right {
     width: 50%;
   }
 }
@@ -100,7 +100,7 @@ textarea {
   gap: 64px;
 }
 
-.add-next-question {
+.add_next_question {
   align-self: start;
 
   & img {

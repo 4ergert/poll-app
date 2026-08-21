@@ -1,22 +1,22 @@
-<section class="question" [formGroup]="questionForm()">
+<section class="question_editor" [formGroup]="questionForm()">
 
-  <div class="question-content">
+  <div class="question_fields">
     <div class="question_header">
-      <label for="question-{{ questionNumber() }}">{{ questionNumber() }}. Question </label>
-      <div class="multiple-choice">
-        <input id="multiple-choice-{{ questionNumber() }}" type="checkbox" formControlName="multipleChoice" />
-        <label for="multiple-choice-{{ questionNumber() }}">Allow multiple answers.</label>
+      <label for="question{{ questionNumber() }}">{{ questionNumber() }}. Question </label>
+      <div class="multiple_choice">
+        <input id="multipleChoice{{ questionNumber() }}" type="checkbox" formControlName="multipleChoice" />
+        <label for="multipleChoice{{ questionNumber() }}">Allow multiple answers.</label>
       </div>
     </div>
     <p class="input_with_delete">
-      <input id="question-{{ questionNumber() }}" type="text" formControlName="question">
+      <input id="question{{ questionNumber() }}" type="text" formControlName="question">
       <trashcan />
     </p>
 
     <label for="answer">Answer</label>
-    <div class="question_and_answer" formArrayName="answers">
+    <div class="answers" formArrayName="answers">
       @for (answer of answers.controls; track $index) {
-      <p class="input_with_delete">{{ answerNumbers[$index] }}. <input id="answer-{{ questionNumber() }}-{{ $index }}" type="text"
+      <p class="input_with_delete">{{ answerNumbers[$index] }}. <input id="answer{{ questionNumber() }}Index{{ $index }}" type="text"
           [formControlName]="$index">
         <trashcan />
       </p>

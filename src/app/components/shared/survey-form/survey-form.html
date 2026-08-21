@@ -2,13 +2,12 @@
 
   <fieldset>
     <section class="fieldset_header">
-      <div class="fieldset_header__left">
+      <div class="fieldset_header_left">
         <label for="name">Survey Name</label>
         <div class="input_with_delete">
           <input id="name" formControlName="name" type="text" />
           <trashcan />
         </div>
-
         <div class="date_and_category">
           <div>
             <label for="date">Set end date</label>
@@ -24,7 +23,7 @@
         </div>
       </div>
 
-      <div class="fieldset_header__right">
+      <div class="fieldset_header_right">
         <label for="describing">Describing text</label>
         <div class="input_with_delete">
           <textarea id="describing" formControlName="describing"></textarea>
@@ -40,7 +39,8 @@
           [questionNumber]="$index + 1"
         ></add-question>
       }
-      <div class="add-next-question">
+
+      <div class="add_next_question">
         <sec-button (click)="addQuestion()">
           Add next question
           <img src="assets/icons/add_icon.png" alt="Add Icon">

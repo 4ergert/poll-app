@@ -3,7 +3,7 @@
   min-width: 0;
 }
 
-.question {
+.question_editor {
   width: 100%;
 }
 
@@ -40,7 +40,7 @@ p {
   font-size: 20px;
 }
 
-.question-content {
+.question_fields {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -57,7 +57,7 @@ p {
   width: 100%;
 }
 
-.multiple-choice {
+.multiple_choice {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -74,7 +74,7 @@ p {
   }
 }
 
-.question_and_answer {
+.answers {
   display: flex;
   flex-direction: column;
   width: 100%;
