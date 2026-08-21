@@ -16,6 +16,7 @@ export class SurveyForm {
     {
       name: new FormControl(''),
       date: new FormControl(new Date(2023, 4, 11)),
+      category: new FormControl(''),
       describing: new FormControl(''),
       questions: new FormArray([this.createQuestionForm()]),
     }

@@ -46,6 +46,8 @@ fieldset {
 input {
   height: 37px;
   border-radius: 5px 20px 5px 5px;
+  padding: 0 8px;
+  font-size: 20px;
 }
 
 .input_with_delete {
@@ -63,6 +65,14 @@ input {
 textarea {
   height: 100px;
   border-radius: 5px 20px 5px 5px;
+  padding: 0 8px;
+  font-size: 20px;
+}
+
+.choose_category option {
+  font-family: 'Mulish', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
 }
 
 .submit_button {
@@ -78,7 +88,7 @@ textarea {
   justify-content: space-between;
   width: 100%;
 
-  > div {
+  >div {
     flex: 1;
     min-width: 0;
   }
