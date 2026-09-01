@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule, FormArray, FormGroup, FormControl } from '@angular/forms';
 import { Button } from '../button/button';
 import { AddQuestion, QuestionForm } from '../add-question/add-question';
 import { Trashcan } from '../trashcan/trashcan';
 import { SecButton } from '../sec-button/sec-button';
+import { Survices } from '../services/survices';
+import { SurveyModel } from '../models/surveymodel';
 
 @Component({
   selector: 'survey-form',
@@ -22,16 +24,33 @@ export class SurveyForm {
     }
   );
   readonly questions = this.surveyForm.controls.questions;
+  surveyService: Survices = inject(Survices);
 
-  onSubmit() {
-    console.log(this.surveyForm.value);
-    this.surveyForm.controls.name.reset('');
-    this.surveyForm.controls.date.reset(new Date(2023, 4, 11));
-    this.surveyForm.controls.describing.reset('');
-    this.questions.clear();
-    this.questions.push(this.createQuestionForm());
-    this.surveyForm.markAsPristine();
-    this.surveyForm.markAsUntouched();
+  async onSubmit() {
+    if (this.surveyForm.valid) {
+      const value = this.surveyForm.getRawValue();
+      const surveyData = new SurveyModel({
+        name: value.name ?? '',
+        date: value.date ?? new Date(2023, 4, 11),
+        category: value.category ?? '',
+        describing: value.describing ?? '',
+        questions: value.questions.map((question) => ({
+          question: question.question ?? '',
+          multipleChoice: question.multipleChoice ?? false,
+          answers: question.answers.map((answer) => answer ?? ''),
+        })),
+      });
+
+      await this.surveyService.saveSurvey(surveyData);
+
+      this.surveyForm.controls.name.reset('');
+      this.surveyForm.controls.date.reset(new Date(2023, 4, 11));
+      this.surveyForm.controls.describing.reset('');
+      this.questions.clear();
+      this.questions.push(this.createQuestionForm());
+      this.surveyForm.markAsPristine();
+      this.surveyForm.markAsUntouched();
+    }
   }
 
   addQuestion() {

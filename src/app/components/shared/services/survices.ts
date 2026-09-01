@@ -1,20 +1,36 @@
 import { Injectable } from '@angular/core';
-import { createClient } from '@supabase/supabase-js'
+import { createClient } from '@supabase/supabase-js';
+import { SurveyModel } from '../models/surveymodel';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Survices {
-  supabase = createClient('https://ifoidagatwwfdivhzvcw.supabase.co/rest/v1/', 'sb_publishable_ceUCpzz33kkThuMO6nTylg_kYwvskeQ')
+  private readonly supabase = createClient(
+    'https://ifoidagatwwfdivhzvcw.supabase.co',
+    'sb_publishable_ceUCpzz33kkThuMO6nTylg_kYwvskeQ',
+  );
 
   async getSurveys() {
-    let data = await this.supabase
+    const { data, error } = await this.supabase
       .from('Survey_Form')
-      .select('*')
-    console.log(data)
+      .select('*');
+
+    if (error) {
+      throw error;
+    }
+
+    return data;
   }
 
-  constructor() {
-    this.getSurveys()
+  async saveSurvey(survey: SurveyModel) {
+    const { error } = await this.supabase
+      .from('Survey_Form')
+      .insert(survey);
+
+    if (error) {
+      throw error;
+    }
   }
+
 }
