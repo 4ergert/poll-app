@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CreateNewSurvey } from '../create-new-survey/create-new-survey';
 import { MainHeader } from './header/header';
 import { Hero } from './hero/hero';
 import { Surveys } from './surveys/surveys';
+import { Survices } from '../shared/services/survices';
 
 
 @Component({
@@ -13,4 +14,9 @@ import { Surveys } from './surveys/surveys';
 })
 export class Home {
   isCreateSurveyDialogOpen = false;
+  surveyService = inject(Survices);
+
+  constructor() {
+    this.surveyService.getSurveys();
+  }
 }

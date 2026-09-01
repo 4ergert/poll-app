@@ -2,3 +2,5 @@ https://developer-akademie.teachable.com/l/products?sortKey=recommended&sortDire
 https://docs.google.com/document/d/13Kopqi0HDsnuPkJHrSVYSPGbjSqRTakN1KlKk9oJsf4/edit?tab=t.0#heading=h.oeodsmlvkdaa
 https://www.figma.com/design/yjKdGp9Z612bnRp2iayYe7/Poll-App-Design?node-id=138-1108&t=LZ3GtCIRx1VTA5Nz-0
 https://translate.google.de/?sl=en&tl=de&op=translate
+
+SupaBasePW: cMoQYl9MMxUAnR8F
