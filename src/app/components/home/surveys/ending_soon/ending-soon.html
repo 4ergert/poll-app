@@ -2,9 +2,9 @@
   <p>Ending soon surveys</p>
   
   <section id="genEndingSurvey">
-    <ending-survey></ending-survey>
-    <ending-survey></ending-survey>
-    <ending-survey></ending-survey>
+    @for (survey of endingSoonSurveys(); track $index) {
+      <ending-survey><p>{{ survey.name }}</p></ending-survey>
+    }
 
   </section>
   
