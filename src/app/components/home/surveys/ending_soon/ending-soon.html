@@ -3,7 +3,13 @@
   
   <section id="genEndingSurvey">
     @for (survey of endingSoonSurveys(); track $index) {
-      <ending-survey><p>{{ survey.name }}</p></ending-survey>
+      <ending-survey>
+        <div class="ending_survey_header">
+          <p>{{ survey.category }}</p>
+          <h4>{{ survey.name }}</h4>
+        </div>
+        <p>Ends in {{ getEndsInDays(survey.date) }} days</p>
+      </ending-survey>
     }
 
   </section>

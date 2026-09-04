@@ -3,4 +3,10 @@
   height: 321px;
   background: #ffffff;
   border-top-right-radius: 80px;
+  box-sizing: border-box;
+  padding: 40px 44px 60px 44px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

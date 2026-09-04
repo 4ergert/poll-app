@@ -14,10 +14,10 @@ export class EndingSoon {
   readonly endingSoonSurveys = signal<Survey[]>([]);
 
   ngOnInit() {
-    this.init();
+    this.getEndingSoonSurveys();
   }
 
-  async init() {
+  async getEndingSoonSurveys() {
     const service = await this.surveyService.getSurveys();
 
     const endingSoonSurveys = [...service]
@@ -25,5 +25,12 @@ export class EndingSoon {
       .slice(0, 3);
 
     this.endingSoonSurveys.set(endingSoonSurveys);
+  }
+
+  getEndsInDays(endDate: Date): number {
+    const now = new Date();
+    const end = new Date(endDate);
+    const diffTime = end.getTime() - now.getTime();
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   }
 }

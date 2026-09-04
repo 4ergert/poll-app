@@ -5,12 +5,22 @@
   gap: 32px;
 
   & p {
-    font-size: 32px;
-    font-weight: 500;
-  } 
+    font-family: Mulish;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 14px;
+    color:#35273A;
+
+  }
 }
 
 #genEndingSurvey {
   display: flex;
   justify-content: space-between;
+}
+
+.ending_survey_header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
