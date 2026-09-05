@@ -17,6 +17,9 @@
 
 #surveysOverview {
   width: 1042px;
-  height: 300px;
-  background-color: #5e366c;
+  padding-top: 8px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+
 }

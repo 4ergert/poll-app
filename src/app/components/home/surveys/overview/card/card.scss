@@ -1,0 +1,12 @@
+.survey_card {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #423547;
+  border-radius: 5px 50px 5px 5px;
+  padding: 12px 20px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #5e366c;
+  }
+}

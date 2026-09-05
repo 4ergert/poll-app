@@ -6,5 +6,13 @@
     </div>
     <dropdown-menu></dropdown-menu>
   </div>
-  <section id="surveysOverview"></section>
+  <section id="surveysOverview">
+    @for (survey of allSurveys(); track $index) {
+      <survey-card>
+        <p> {{ survey.category }} </p>
+        <h5> {{ survey.name }} </h5>
+        <p>Ends in {{ getEndsInDays(survey.date) }} days</p>
+      </survey-card>
+    }
+  </section>
 </section>

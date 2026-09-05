@@ -1,14 +1,14 @@
 <section class="ending_soon">
   <p>Ending soon surveys</p>
   
-  <section id="genEndingSurvey">
+  <section id="genEndingSurvey" class="ending_survey">
     @for (survey of endingSoonSurveys(); track $index) {
       <ending-survey>
-        <div class="ending_survey_header">
-          <p>{{ survey.category }}</p>
+        <div class="ending_survey__header">
+          <p class="ending_survey__category">{{ survey.category }}</p>
           <h4>{{ survey.name }}</h4>
         </div>
-        <p>Ends in {{ getEndsInDays(survey.date) }} days</p>
+        <p class="ending_survey__ends_in">Ends in {{ getEndsInDays(survey.date) }} days</p>
       </ending-survey>
     }
 

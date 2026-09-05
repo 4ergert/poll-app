@@ -3,15 +3,6 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
-
-  & p {
-    font-family: Mulish;
-    font-weight: 600;
-    font-style: SemiBold;
-    font-size: 14px;
-    color:#35273A;
-
-  }
 }
 
 #genEndingSurvey {
@@ -19,8 +10,30 @@
   justify-content: space-between;
 }
 
-.ending_survey_header {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.ending_survey {
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__category {
+    font-family: Mulish;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 14px;
+    color: #35273A;
+  }
+
+  &__ends_in {
+    width: fit-content;
+    font-family: Mulish;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 14px;
+    color: #35273A;
+    background: #ffcfa1;
+    padding: 4px 8px;
+    border-top-right-radius: 16px;
+  }
 }
