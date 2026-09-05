@@ -20,6 +20,37 @@
   padding-top: 8px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
+  gap: 16px;
+}
 
+.survey_card {
+  &__category {
+    font-family: Mulish;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 16px;
+    color: #FFCFA1;
+  }
+
+  &__h5 {
+    font-family: Mulish;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 24px;
+    color: #FFFFFF;
+  }
+
+  &__ends-in {
+    margin-top: 24px;
+    margin-left: auto;
+    width: fit-content;
+    padding: 3px 6px;
+    font-family: Mulish;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 14px;
+    color: #221227;
+    background: #ffcfa1;
+    border-top-right-radius: 14px;
+  }
 }

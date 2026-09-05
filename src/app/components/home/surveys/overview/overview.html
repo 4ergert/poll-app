@@ -1,17 +1,19 @@
 <section class="overview">
   <div class="overview_header">
     <div class="overview_header_buttons">
-      <button>Active servey</button>
-      <button>Past servey</button>
+      <overview-button>Active surveys</overview-button>
+      <overview-button>Past surveys</overview-button>
     </div>
     <dropdown-menu></dropdown-menu>
   </div>
   <section id="surveysOverview">
     @for (survey of allSurveys(); track $index) {
-      <survey-card>
-        <p> {{ survey.category }} </p>
-        <h5> {{ survey.name }} </h5>
-        <p>Ends in {{ getEndsInDays(survey.date) }} days</p>
+      <survey-card class="survey_card" routerLink="/vote/{{ survey.id }}">
+        <div>
+          <p class="survey_card__category"> {{ survey.category }} </p>
+          <h5 class="survey_card__h5"> {{ survey.name }} </h5>
+        </div>
+        <p class="survey_card__ends-in">Ends in {{ getEndsInDays(survey.date) }} days</p>
       </survey-card>
     }
   </section>

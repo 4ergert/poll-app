@@ -1,0 +1,16 @@
+.overview_button {
+  border: none;
+  background-color: #fee9d4;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-weight: 400;
+  font-size: 16px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &--active {
+    background-color: #ffb770;
+  }
+}

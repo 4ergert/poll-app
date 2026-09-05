@@ -1,59 +1,71 @@
-# PollApp
+# Poll App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.20.
+Eine Angular-Webanwendung zum Erstellen und Anzeigen von Umfragen. Die Startseite bietet eine Umfrageübersicht, eine Liste bald endender Umfragen und einen Dialog zum Anlegen neuer Umfragen.
 
-## Development server
+## Funktionen
 
-To start a local development server, run:
+- Anzeigen aktiver und vergangener Umfragen
+- Hervorheben bald endender Umfragen
+- Erstellen neuer Umfragen mit Fragen und Antwortoptionen
+- Speichern und Abrufen von Umfragen über Supabase
 
-```bash
-ng serve
-```
+## Voraussetzungen
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- [Node.js](https://nodejs.org/)
+- npm
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Installation
 
 ```bash
-ng generate --help
+npm install
 ```
 
-## Building
+## Lokale Entwicklung
 
-To build the project run:
+Den Entwicklungsserver starten:
 
 ```bash
-ng build
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Anschließend ist die Anwendung unter `http://localhost:4200/` erreichbar. Änderungen am Quellcode werden automatisch neu geladen.
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Produktions-Build
 
 ```bash
-ng test
+npm run build
 ```
 
-## Running end-to-end tests
+Der optimierte Build wird unter `dist/poll-app/` erstellt.
 
-For end-to-end (e2e) testing, run:
+## Projektstruktur
+
+```text
+src/
+├── app/
+│   ├── components/
+│   │   ├── create-new-survey/  # Dialog zum Anlegen einer Umfrage
+│   │   ├── home/               # Startseite, Header und Umfrageansichten
+│   │   └── shared/             # Wiederverwendbare Komponenten, Modelle und Services
+│   ├── app.routes.ts           # Routen der Anwendung
+│   └── app.config.ts           # Anwendungs-Konfiguration
+├── styles/                     # Globale SCSS-Styles
+└── styles.scss                 # Globaler Style-Einstiegspunkt
+```
+
+## Technologien
+
+- Angular 21
+- TypeScript
+- SCSS
+- Supabase
+
+## Weitere Befehle
+
+Einen Entwicklungs-Build mit aktivem Watch-Modus erstellen:
 
 ```bash
-ng e2e
+npm run watch
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Weitere Angular-CLI-Befehle sind über `npx ng --help` verfügbar.
