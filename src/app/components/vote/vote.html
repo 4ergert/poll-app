@@ -1,1 +1,6 @@
 <img src="/assets/img/poll-app-dark.png" alt="Poll App Dark Logo" width="119px" height="49px">
+@if (survey(); as selectedSurvey) {
+  <h1>{{ selectedSurvey.name }}</h1>
+} @else {
+  <p>Survey is loading or could not be found.</p>
+}

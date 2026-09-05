@@ -8,7 +8,7 @@
   </div>
   <section id="surveysOverview">
     @for (survey of allSurveys(); track $index) {
-      <survey-card class="survey_card" routerLink="/vote/{{ survey.id }}">
+      <survey-card class="survey_card" [routerLink]="['/vote', survey.id]">
         <div>
           <p class="survey_card__category"> {{ survey.category }} </p>
           <h5 class="survey_card__h5"> {{ survey.name }} </h5>
