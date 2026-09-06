@@ -1,2 +1,11 @@
 
 <router-outlet />
+
+@if (dialogService.isCreateSurveyDialogOpen()) {
+  <div class="dialog_overlay" (click)="dialogService.closeCreateSurveyDialog()">
+    <app-create-new-survey
+      (close)="dialogService.closeCreateSurveyDialog()"
+      (click)="$event.stopPropagation()"
+    ></app-create-new-survey>
+  </div>
+}
