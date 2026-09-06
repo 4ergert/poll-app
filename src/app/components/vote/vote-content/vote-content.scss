@@ -1,0 +1,19 @@
+.vote_content {
+  width: 702px;
+  padding: 40px;
+  border-top-right-radius: 160px;
+  background-color: #f3eff5;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & p {
+      font-family: Mulish;
+      font-weight: 500;
+      font-style: Medium;
+      font-size: 14px;
+    }
+  }
+}

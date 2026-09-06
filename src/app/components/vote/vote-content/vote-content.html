@@ -1,0 +1,13 @@
+<section class="vote_content">
+
+  @if (survey(); as selectedSurvey) {
+    <div class="vote_content__header">
+      <p>Ends on {{ selectedSurvey.date }}</p>
+      <p>{{ selectedSurvey.category }}</p>
+    </div>
+  <h3>{{ selectedSurvey.name }}</h3>
+  } @else {
+  <p>Survey is loading or could not be found.</p>
+  }
+
+</section>

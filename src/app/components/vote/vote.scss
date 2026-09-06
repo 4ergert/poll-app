@@ -1,10 +1,20 @@
-.vote_content {
+.vote_site {
   display: flex;
   flex-direction: column;
+  min-height: 100dvh;
+  box-sizing: border-box;
   padding: 42px 111px 0px 111px;
+  gap: 40px;
 }
 
 .vote_header {
   display: flex;
   justify-content: space-between;
+}
+
+.vote_content_and_survey_results {
+  display: flex;
+  gap: 42px;
+  align-items: flex-end;
+  margin-top: auto;
 }

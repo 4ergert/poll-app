@@ -1,4 +1,4 @@
-<section class="vote_content">
+<section class="vote_site">
 
   <header class="vote_header">
     <img src="/assets/img/poll-app-dark.png" alt="Poll App Dark Logo" width="119px" height="49px">
@@ -8,13 +8,8 @@
     </poll-app-button>
   </header>
 
-
-
-
-  @if (survey(); as selectedSurvey) {
-  <h1>{{ selectedSurvey.name }}</h1>
-  } @else {
-  <p>Survey is loading or could not be found.</p>
-  }
-
+  <section class="vote_content_and_survey_results">
+    <vote-content></vote-content>
+    <survey-results></survey-results>
+  </section>
 </section>
