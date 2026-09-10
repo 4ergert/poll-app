@@ -2,10 +2,12 @@ import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Survices } from '../../shared/services/survices';
 import { Survey } from '../../shared/interfaces/survey';
+import { QuestionMarkPipe } from '../../shared/pipes/question-mark-pipe';
+import { FirstCharUpperCasePipe } from '../../shared/pipes/first-char-upper-case-pipe';
 
 @Component({
   selector: 'vote-content',
-  imports: [],
+  imports: [QuestionMarkPipe, FirstCharUpperCasePipe],
   templateUrl: './vote-content.html',
   styleUrl: './vote-content.scss',
 })

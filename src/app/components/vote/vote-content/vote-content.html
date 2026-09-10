@@ -10,7 +10,7 @@
     <p>{{ selectedSurvey.describing }}</p>
 
     @for (survey of selectedSurvey.questions; track $index ) {
-      <h4>{{ survey.question }}</h4>
+      <h4>{{ survey.question | questionMark | firstCharUpperCase }}</h4>
       @for (answer of survey.answers; track $index) {
         <p>{{ getAnswerLabel($index) }}. {{ answer }}</p>
       }
