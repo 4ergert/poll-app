@@ -1,13 +1,23 @@
 <section class="vote_content">
 
   @if (survey(); as selectedSurvey) {
+    <p class="vote_content__published">Published</p>
     <div class="vote_content__header">
       <p>Ends on {{ selectedSurvey.date }}</p>
       <p>{{ selectedSurvey.category }}</p>
     </div>
-  <h3>{{ selectedSurvey.name }}</h3>
+    <h3>{{ selectedSurvey.name }}</h3>
+    <p>{{ selectedSurvey.describing }}</p>
+
+    @for (survey of selectedSurvey.questions; track $index ) {
+      <h4>{{ survey.question }}</h4>
+      @for (answer of survey.answers; track $index) {
+        <p>{{ getAnswerLabel($index) }}. {{ answer }}</p>
+      }
+    }
+
   } @else {
-  <p>Survey is loading or could not be found.</p>
+    <p>Survey is loading or could not be found.</p>
   }
 
 </section>

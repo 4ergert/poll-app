@@ -16,10 +16,10 @@
     <label for="answer">Answer</label>
     <div class="answers" formArrayName="answers">
       @for (answer of answers.controls; track $index) {
-      <p class="input_with_delete">{{ answerNumbers[$index] }}. <input id="answer{{ questionNumber() }}Index{{ $index }}" type="text"
-          [formControlName]="$index">
-        <trashcan (click)="delete('answers', $index)" />
-      </p>
+        <p class="input_with_delete">{{ answerNumbers[$index] }}. <input
+            id="answer{{ questionNumber() }}Index{{ $index }}" type="text" [formControlName]="$index">
+          <trashcan (click)="delete('answers', $index)" />
+        </p>
       }
     </div>
     <add-answer-button (add)="addAnswer()"></add-answer-button>

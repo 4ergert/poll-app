@@ -4,6 +4,18 @@
   border-top-right-radius: 160px;
   background-color: #f3eff5;
 
+  &__published {
+    width: fit-content;
+    font-family: Mulish;
+    font-weight: 600;
+    font-style: Bold;
+    font-size: 16px;
+    padding: 3px 12px 3px 8px;
+    border-top-right-radius: 14px;
+    background-color: #FFB770;
+    margin-bottom: 8px;
+  }
+
   &__header {
     display: flex;
     justify-content: space-between;
