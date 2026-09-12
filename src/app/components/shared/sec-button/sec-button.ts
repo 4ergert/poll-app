@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'sec-button',
@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './sec-button.html',
   styleUrl: './sec-button.scss',
 })
-export class SecButton {}
+export class SecButton {
+  readonly type = input<'button' | 'submit'>('button');
+}

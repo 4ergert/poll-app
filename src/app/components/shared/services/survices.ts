@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { createClient } from '@supabase/supabase-js';
 import { SurveyModel } from '../models/surveymodel';
+import { Vote } from '../interfaces/vote';
 
 @Injectable({
   providedIn: 'root',
@@ -33,4 +34,16 @@ export class Survices {
     }
   }
 
+  async saveSurveyAnswer(surveyId: number, vote: Vote) {
+    const { error } = await this.supabase
+      .from('Survey_Answers')
+      .insert({
+        survey_id: surveyId,
+        vote,
+      });
+
+    if (error) {
+      throw error;
+    }
+  }
 }
