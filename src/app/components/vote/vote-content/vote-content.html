@@ -9,12 +9,23 @@
     <h3>{{ selectedSurvey.name }}</h3>
     <p>{{ selectedSurvey.describing }}</p>
 
-    @for (survey of selectedSurvey.questions; track $index ) {
-      <h4>{{ survey.question | questionMark | firstCharUpperCase }}</h4>
-      @for (answer of survey.answers; track $index) {
-        <p>{{ getAnswerLabel($index) }}. {{ answer }}</p>
+    <form [formGroup]="voteForm" (ngSubmit)="onSubmit()">
+      @for (survey of selectedSurvey.questions; track $index; let questionIndex = $index) {
+        <h4>{{ survey.question | questionMark | firstCharUpperCase }}</h4>
+        @for (answer of survey.answers; track $index; let answerIndex = $index) {
+          <section class="vote_section">
+            <input
+              type="checkbox"
+              [id]="getControlName(questionIndex, answerIndex)"
+              [formControlName]="getControlName(questionIndex, answerIndex)"
+            >
+            <p>{{ getAnswerLabel($index) }}. {{ answer }}</p>
+          </section>
+        }
       }
-    }
+
+      <sec-button type="submit">Complete survey</sec-button>
+    </form>
 
   } @else {
     <p>Survey is loading or could not be found.</p>

@@ -29,3 +29,13 @@
     }
   }
 }
+
+.vote_section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+
+  & input[type="checkbox"] {
+    margin-right: 8px;
+  }
+}
