@@ -7,6 +7,7 @@ export class SurveyModel implements Survey {
   describing: string;
   questions: Question[];
 
+
   constructor(data: Partial<Survey> = {}) {
     this.name = data.name ?? '';
     this.date = data.date ?? new Date();
@@ -15,4 +16,3 @@ export class SurveyModel implements Survey {
     this.questions = data.questions ?? [];
   }
 }
-

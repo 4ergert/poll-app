@@ -33,4 +33,17 @@ export class Survices {
     }
   }
 
+  async saveVote(surveyId: number, vote: Record<string, boolean>) {
+    const { error } = await this.supabase
+      .from('Survey_Form')
+      .insert({
+        // survey_id: surveyId,
+        vote,
+      });
+
+    if (error) {
+      throw error;
+    }
+  }
+
 }

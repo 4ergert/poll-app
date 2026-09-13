@@ -34,7 +34,6 @@ export class VoteContent {
     for (const [questionIndex, question] of (survey?.questions ?? []).entries()) {
       for (const answerIndex of question.answers.keys()) {
         this.voteForm.addControl(
-          // ...ich brauche hier noch die ID vom Survey
           this.getControlName(questionIndex, answerIndex),
           new FormControl(false, { nonNullable: true }),
         );
@@ -42,9 +41,15 @@ export class VoteContent {
     }
   }
 
-  onSubmit() {
-    console.log(this.voteForm.value);
-    console.log(this.survey()?.id);
+  async onSubmit() {
+    const survey = this.survey();
+
+    if (survey?.id === undefined) {
+      throw new Error('Survey was not found.');
+    }
+
+    await this.survices.saveVote(survey.id, this.voteForm.getRawValue());
+
   }
 
   getControlName(questionIndex: number, answerIndex: number): string {
