@@ -1,3 +1,31 @@
-h6 span {
-  color: #ffb770;
+h6 {
+  margin-bottom: 16px;
+
+  & span {
+    color: #ffb770;
+  }
+}
+
+.question {
+  font-family: Mulish;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 18px;
+}
+
+.vote_bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  gap: 8px;
+
+  &__label {
+    font-family: Mulish;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    vertical-align: middle;
+  }
 }

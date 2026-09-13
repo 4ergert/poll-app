@@ -1,1 +1,22 @@
 <h6>Survey Results <span>LIVE</span></h6>
+  @if (isLoading()) {
+    <p>Survey is loading.</p>
+
+  } @else if (loadError(); as error) {
+      <p>Survey could not be loaded: {{ error }}</p>
+
+  } @else if (survey(); as selectedSurvey) {
+
+      @for (selected of selectedSurvey.questions; track $index) {
+        <p class="question">{{ $index + 1 }}. {{ selected.question | questionMark | firstCharUpperCase }}</p>
+        @for (option of selected.answers; track $index) {
+          <section class="vote_bar">
+            <p class="vote_bar__label">{{ getAnswerLabel($index) }}</p>
+            <progress value="7" max="10">70%</progress>
+          </section>
+        }
+      }
+
+  } @else {
+      <p>Survey could not be found.</p>
+  }
