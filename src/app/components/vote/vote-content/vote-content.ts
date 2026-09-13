@@ -6,7 +6,7 @@ import { QuestionMarkPipe } from '../../shared/pipes/question-mark-pipe';
 import { FirstCharUpperCasePipe } from '../../shared/pipes/first-char-upper-case-pipe';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SecButton } from '../../shared/sec-button/sec-button';
-import { Vote } from '../../shared/interfaces/vote';
+import { VoteModel } from '../../shared/models/votemodel';
 
 
 @Component({
@@ -19,7 +19,6 @@ export class VoteContent {
   readonly surveyId = inject(ActivatedRoute).snapshot.paramMap.get('id');
   readonly survices = inject(Survices);
   readonly survey = signal<Survey | undefined>(undefined);
-
   readonly voteForm = new FormGroup<Record<string, FormControl<boolean>>>({});
 
   getAnswerLabel(index: number): string {
@@ -49,30 +48,11 @@ export class VoteContent {
       throw new Error('Survey was not found.');
     }
 
-    const formValue = this.voteForm.getRawValue();
-    const vote: Vote = {
-      surveyId: survey.id,
-      questions: survey.questions.map((question, questionIndex) => ({
-        questionIndex,
-        question: question.question,
-        answers: question.answers.map((answer, answerIndex) => {
-          const selected: true[] = formValue[
-            this.getControlName(questionIndex, answerIndex)
-          ] ? [true] : [];
-
-          return {
-            answerIndex,
-            answer,
-            selected,
-          };
-        }),
-      })),
-    };
-
+    const vote = new VoteModel(survey, this.voteForm.getRawValue());
     await this.survices.updateVote(survey.id, vote);
   }
 
   getControlName(questionIndex: number, answerIndex: number): string {
-    return `question${questionIndex}Answer${answerIndex}`;
+    return VoteModel.getControlName(questionIndex, answerIndex);
   }
 }
