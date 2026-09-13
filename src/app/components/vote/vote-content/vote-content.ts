@@ -6,6 +6,7 @@ import { QuestionMarkPipe } from '../../shared/pipes/question-mark-pipe';
 import { FirstCharUpperCasePipe } from '../../shared/pipes/first-char-upper-case-pipe';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SecButton } from '../../shared/sec-button/sec-button';
+import { Vote } from '../../shared/interfaces/vote';
 
 
 @Component({
@@ -48,8 +49,27 @@ export class VoteContent {
       throw new Error('Survey was not found.');
     }
 
-    await this.survices.saveVote(survey.id, this.voteForm.getRawValue());
+    const formValue = this.voteForm.getRawValue();
+    const vote: Vote = {
+      surveyId: survey.id,
+      questions: survey.questions.map((question, questionIndex) => ({
+        questionIndex,
+        question: question.question,
+        answers: question.answers.map((answer, answerIndex) => {
+          const selected: true[] = formValue[
+            this.getControlName(questionIndex, answerIndex)
+          ] ? [true] : [];
 
+          return {
+            answerIndex,
+            answer,
+            selected,
+          };
+        }),
+      })),
+    };
+
+    await this.survices.updateVote(survey.id, vote);
   }
 
   getControlName(questionIndex: number, answerIndex: number): string {
