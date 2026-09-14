@@ -11,13 +11,15 @@ h6 {
   font-weight: 700;
   font-style: Bold;
   font-size: 18px;
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
 
 .vote_bar {
   display: flex;
   align-items: center;
   margin-bottom: 8px;
-  gap: 8px;
+  gap: 16px;
 
   &__label {
     font-family: Mulish;
@@ -27,5 +29,16 @@ h6 {
     line-height: 100%;
     letter-spacing: 0%;
     vertical-align: middle;
+  }
+
+  &__percentage {
+    font-family: Mulish;
+    font-weight: 800;
+    font-style: ExtraBold;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: right;
+    color: #ffb770;
   }
 }

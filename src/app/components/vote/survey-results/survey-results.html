@@ -7,12 +7,18 @@
 
   } @else if (survey(); as selectedSurvey) {
 
-      @for (selected of selectedSurvey.questions; track $index) {
-        <p class="question">{{ $index + 1 }}. {{ selected.question | questionMark | firstCharUpperCase }}</p>
-        @for (option of selected.answers; track $index) {
+      @for (selected of selectedSurvey.questions; track $index; let questionIndex = $index) {
+        <p class="question">{{ questionIndex + 1 }}. {{ selected.question | questionMark | firstCharUpperCase }}</p>
+        @for (option of selected.answers; track $index; let answerIndex = $index) {
           <section class="vote_bar">
             <p class="vote_bar__label">{{ getAnswerLabel($index) }}</p>
-            <progress value="7" max="10">70%</progress>
+            <poll-progress-bar
+              [value]="getAnswerVoteCount(selectedSurvey, questionIndex, answerIndex)"
+              [max]="getQuestionVoteCount(selectedSurvey, questionIndex) || 1"
+            >
+              {{ getAnswerVotePercentage(selectedSurvey, questionIndex, answerIndex) }}%
+            </poll-progress-bar>
+            <p class="vote_bar__percentage">{{ getAnswerVotePercentage(selectedSurvey, questionIndex, answerIndex) }}%</p>
           </section>
         }
       }

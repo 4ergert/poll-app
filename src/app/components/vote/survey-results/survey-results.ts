@@ -4,10 +4,16 @@ import { ActivatedRoute } from '@angular/router';
 import { Survey } from '../../shared/interfaces/survey';
 import { QuestionMarkPipe } from '../../shared/pipes/question-mark-pipe';
 import { FirstCharUpperCasePipe } from '../../shared/pipes/first-char-upper-case-pipe';
+import {
+  getAnswerVoteCount,
+  getAnswerVotePercentage,
+  getQuestionVoteCount,
+} from '../../shared/utils/vote-statistics';
+import { ProgressBar } from '../../shared/progress-bar/progress-bar';
 
 @Component({
   selector: 'survey-results',
-  imports: [QuestionMarkPipe, FirstCharUpperCasePipe],
+  imports: [QuestionMarkPipe, FirstCharUpperCasePipe, ProgressBar],
   templateUrl: './survey-results.html',
   styleUrl: './survey-results.scss',
 })
@@ -21,6 +27,10 @@ export class SurveyResults {
   getAnswerLabel(index: number): string {
     return String.fromCharCode(65 + index);
   }
+
+  readonly getAnswerVoteCount = getAnswerVoteCount;
+  readonly getQuestionVoteCount = getQuestionVoteCount;
+  readonly getAnswerVotePercentage = getAnswerVotePercentage;
 
   async ngOnInit() {
     try {

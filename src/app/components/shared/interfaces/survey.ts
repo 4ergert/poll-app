@@ -1,3 +1,5 @@
+import { Vote } from './vote';
+
 export interface Survey {
   id?: number;
   name: string;
@@ -5,6 +7,7 @@ export interface Survey {
   category: string;
   describing: string;
   questions: Question[];
+  vote?: Vote;
 }
 
 export interface Question {

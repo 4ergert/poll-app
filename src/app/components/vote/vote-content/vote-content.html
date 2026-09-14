@@ -9,22 +9,24 @@
     <h3>{{ selectedSurvey.name }}</h3>
     <p>{{ selectedSurvey.describing }}</p>
 
-    <form [formGroup]="voteForm" (ngSubmit)="onSubmit()">
+    <form class="vote_content__form" [formGroup]="voteForm" (ngSubmit)="onSubmit()">
       @for (survey of selectedSurvey.questions; track $index; let questionIndex = $index) {
-        <h4>{{ survey.question | questionMark | firstCharUpperCase }}</h4>
-        @for (answer of survey.answers; track $index; let answerIndex = $index) {
-          <section class="vote_section">
-            <input
-              type="checkbox"
-              [id]="getControlName(questionIndex, answerIndex)"
-              [formControlName]="getControlName(questionIndex, answerIndex)"
-            >
-            <p>{{ getAnswerLabel($index) }}. {{ answer }}</p>
-          </section>
-        }
+        <section class="vote_content__question">
+          <h4>{{ survey.question | questionMark | firstCharUpperCase }}</h4>
+          @for (answer of survey.answers; track $index; let answerIndex = $index) {
+            <section class="vote_section">
+              <input
+                type="checkbox"
+                [id]="getControlName(questionIndex, answerIndex)"
+                [formControlName]="getControlName(questionIndex, answerIndex)"
+              >
+              <p>{{ getAnswerLabel($index) }}. {{ answer }}</p>
+            </section>
+          }
+        </section>
       }
 
-      <sec-button type="submit">Complete survey</sec-button>
+      <sec-button class="vote_content__submit" type="submit">Complete survey</sec-button>
     </form>
 
   } @else {
