@@ -1,13 +1,15 @@
 <section class="vote_content">
 
   @if (survey(); as selectedSurvey) {
-    <p class="vote_content__published">Published</p>
-    <div class="vote_content__header">
-      <p>Ends on {{ selectedSurvey.date }}</p>
-      <p>{{ selectedSurvey.category }}</p>
+    <div>
+      <p class="vote_content__published">Published</p>
+      <div class="vote_content__header">
+        <p>Ends on {{ selectedSurvey.date }}</p>
+        <p>{{ selectedSurvey.category }}</p>
+      </div>
+      <h3>{{ selectedSurvey.name }}</h3>
+      <p class="vote_content__describing">{{ selectedSurvey.describing }}</p>
     </div>
-    <h3>{{ selectedSurvey.name }}</h3>
-    <p>{{ selectedSurvey.describing }}</p>
 
     <form class="vote_content__form" [formGroup]="voteForm" (ngSubmit)="onSubmit()">
       @for (survey of selectedSurvey.questions; track $index; let questionIndex = $index) {
@@ -20,7 +22,7 @@
                 [id]="getControlName(questionIndex, answerIndex)"
                 [formControlName]="getControlName(questionIndex, answerIndex)"
               >
-              <p>{{ getAnswerLabel($index) }}. {{ answer }}</p>
+              <p><span class="vote_section__label">{{ getAnswerLabel($index) }}. </span><span class="vote_section__answer">{{ answer | firstCharUpperCase}}</span></p>
             </section>
           }
         </section>

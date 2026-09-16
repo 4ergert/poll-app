@@ -3,6 +3,9 @@
   padding: 40px;
   border-top-right-radius: 160px;
   background-color: #f3eff5;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 
   &__published {
     width: fit-content;
@@ -29,6 +32,13 @@
     }
   }
 
+  &__describing {
+    font-family: Mulish;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 16px;
+  }
+
   &__form {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -50,18 +60,22 @@
 .vote_section {
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
-  gap: 16px;
+  gap: 8px;
+
+  &>p {
+    margin: 0;
+  }
 
   & input[type="checkbox"] {
+    flex: 0 0 15px;
     appearance: none;
     -webkit-appearance: none;
 
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     margin: 0;
     border: 2px solid #35273a;
-    border-radius: 4px;
+    border-radius: 3px;
     background-color: transparent;
     cursor: pointer;
     position: relative;
@@ -94,6 +108,20 @@
       outline: 3px solid rgba(255, 183, 112, 0.45);
       outline-offset: 2px;
     }
+  }
+
+  &__label {
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: bold;
+    font-weight: 700;
+  }
+
+  &__answer {
+    font-family: Mulish;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
   }
 
 }
