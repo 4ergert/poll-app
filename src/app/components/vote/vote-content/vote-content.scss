@@ -53,17 +53,19 @@
 
   &__submit {
     grid-column: 1 / -1;
-    justify-self: start;
+    justify-self: end;
   }
 }
 
 .vote_section {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
 
-  &>p {
-    margin: 0;
+  & p {
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
 
   & input[type="checkbox"] {

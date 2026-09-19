@@ -1,7 +1,7 @@
 button {
   border: none;
   color:aliceblue;
-  background-color: #72524a;
+  background-color: var(--background-color, #72524a);
   padding: 8px 12px;
   border-radius: 10px;
   font-family: 'Nokora', sans-serif;
@@ -13,6 +13,6 @@ button {
 }
 
 button:hover {
-  background-color: #ffb770c6;
+  background-color: var(--hover-background-color, #ffb770c6);
   cursor: pointer;
 }

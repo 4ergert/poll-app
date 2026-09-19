@@ -1,3 +1,8 @@
-<button [type]="type()">
+<button
+  [type]="type()"
+  [style.--background-color]="backgroundColor()"
+  [style.color]="textColor()"
+  [style.--hover-background-color]="hoverBackgroundColor()"
+>
   <ng-content></ng-content>
 </button>
