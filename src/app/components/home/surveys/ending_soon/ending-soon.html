@@ -3,7 +3,7 @@
   
   <section id="genEndingSurvey" class="ending_survey">
     @for (survey of endingSoonSurveys(); track $index) {
-      <ending-survey>
+      <ending-survey [routerLink]="['/vote', survey.id]">
         <div class="ending_survey__header">
           <p class="ending_survey__category">{{ survey.category }}</p>
           <h4>{{ survey.name }}</h4>

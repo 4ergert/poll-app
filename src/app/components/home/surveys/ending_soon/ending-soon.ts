@@ -1,4 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { EndingSurvey } from './ending-survey/ending-survey';
 import { Survey } from '../../../shared/interfaces/survey';
 import { Survices } from '../../../shared/services/survices';
@@ -7,7 +8,7 @@ import { getEndingSoonSurveys } from '../../../shared/utils/survey';
 
 @Component({
   selector: 'app-ending-soon',
-  imports: [EndingSurvey],
+  imports: [EndingSurvey, RouterLink],
   templateUrl: './ending-soon.html',
   styleUrl: './ending-soon.scss',
 })

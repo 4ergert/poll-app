@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, computed, input, model } from '@angular/core';
+
+type SurveyStatus = 'active' | 'past';
 
 @Component({
   selector: 'overview-button',
@@ -7,9 +9,11 @@ import { Component } from '@angular/core';
   styleUrl: './button.scss',
 })
 export class OverviewButton {
-  protected isActive = false;
+  readonly surveyStatus = input.required<SurveyStatus>();
+  readonly selectedSurveyStatus = model.required<SurveyStatus>();
+  readonly active = computed(() => this.selectedSurveyStatus() === this.surveyStatus());
 
-  protected toggleActive(): void {
-    this.isActive = !this.isActive;
+  protected select(): void {
+    this.selectedSurveyStatus.set(this.surveyStatus());
   }
 }
