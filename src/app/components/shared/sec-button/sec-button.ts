@@ -8,7 +8,4 @@ import { Component, input } from '@angular/core';
 })
 export class SecButton {
   readonly type = input<'button' | 'submit'>('button');
-  readonly backgroundColor = input('#72524a');
-  readonly textColor = input('aliceblue');
-  readonly hoverBackgroundColor = input('#ffb770c6');
 }

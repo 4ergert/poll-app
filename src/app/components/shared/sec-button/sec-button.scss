@@ -1,6 +1,6 @@
 button {
   border: none;
-  color:aliceblue;
+  color: var(--text-color, aliceblue);
   background-color: var(--background-color, #72524a);
   padding: 8px 12px;
   border-radius: 10px;

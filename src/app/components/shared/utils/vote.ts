@@ -1,17 +1,11 @@
 import { Vote } from '../interfaces/vote';
 
 export function mergeVotes(existingVote: unknown, newVote: Vote): Vote {
-  if (existingVote === null) {
-    return newVote;
-  }
+  if (existingVote === null) return newVote;
 
-  if (isLegacyVote(existingVote)) {
-    return mergeLegacyVote(existingVote, newVote);
-  }
+  if (isLegacyVote(existingVote)) return mergeLegacyVote(existingVote, newVote);
 
-  if (!isVote(existingVote)) {
-    throw new Error('The stored vote data has an invalid format.');
-  }
+  if (!isVote(existingVote)) throw new Error('The stored vote data has an invalid format.');
 
   return {
     surveyId: newVote.surveyId,

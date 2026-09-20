@@ -1,4 +1,4 @@
-<form [formGroup]="surveyForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="surveyForm" (ngSubmit)="onSubmit()" novalidate>
 
   <fieldset>
     <section class="fieldset_header">
@@ -6,12 +6,15 @@
       <div class="fieldset_header_left">
         <label for="name">Survey Name</label>
         <div class="input_with_delete">
-          <input id="name" formControlName="name" type="text" />
+          <input id="name" formControlName="name" type="text" required />
           <trashcan (click)="delete('name')"/>
         </div>
+        @if (surveyForm.controls.name.invalid && surveyForm.controls.name.touched) {
+          <p class="validation_message" role="alert">This field is required.</p>
+        }
         <div class="date_and_category">
           <div>
-            <label for="date">Set end date</label>
+            <label for="date">Set end date <span>(optional)</span></label>
             <div class="input_with_delete">
               <input id="date" formControlName="date" type="date">
               <trashcan (click)="delete('date')" />
@@ -33,7 +36,7 @@
       </div>
       <!-- Form header right -->
       <div class="fieldset_header_right">
-        <label for="describing">Describing text</label>
+        <label for="describing">Describing text <span>(optional)</span></label>
         <div class="input_with_delete">
           <textarea id="describing" formControlName="describing"></textarea>
           <trashcan (click)="delete('describing')" />

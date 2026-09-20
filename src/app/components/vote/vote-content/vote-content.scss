@@ -52,6 +52,9 @@
   }
 
   &__submit {
+    --background-color: #f7decd;
+    --text-color: #35273a;
+    --hover-background-color: #ffc7a1;
     grid-column: 1 / -1;
     justify-self: end;
   }

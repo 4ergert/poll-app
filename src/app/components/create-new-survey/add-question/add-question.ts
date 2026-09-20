@@ -1,6 +1,7 @@
 import { Component, input } from '@angular/core';
-import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Trashcan } from '../trashcan/trashcan';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Trashcan } from '../../shared/trashcan/trashcan';
+import { getAnswerLabel as getAnswerLabelForIndex } from '../../shared/utils/answer-label';
 import { AddAnswerButton } from '../add-answer-button/add-answer-button';
 
 export type QuestionForm = FormGroup<{
@@ -18,12 +19,10 @@ export type QuestionForm = FormGroup<{
 export class AddQuestion {
   readonly questionForm = input.required<QuestionForm>();
   readonly questionNumber = input.required<number>();
-  readonly answerNumbers = ["A", "B", "C", "D", "E", "F"];
+  readonly getAnswerLabel = getAnswerLabelForIndex;
 
   addAnswer() {
-    if (this.answers.controls.length < this.answerNumbers.length) {
-      this.answers.push(new FormControl(''));
-    }
+    this.answers.push(new FormControl('', Validators.required));
   }
 
   get answers() {
@@ -46,7 +45,7 @@ export class AddQuestion {
           }
         } else {
           this.answers.clear();
-          this.answers.push(new FormControl(''));
+          this.answers.push(new FormControl('', Validators.required));
         }
 
         break;

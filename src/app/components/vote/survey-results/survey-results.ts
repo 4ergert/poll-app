@@ -10,6 +10,7 @@ import {
   getQuestionVoteCount,
 } from '../../shared/utils/vote-statistics';
 import { ProgressBar } from '../../shared/progress-bar/progress-bar';
+import { getAnswerLabel as getAnswerLabelForIndex } from '../../shared/utils/answer-label';
 
 @Component({
   selector: 'survey-results',
@@ -23,10 +24,7 @@ export class SurveyResults {
   readonly survey = signal<Survey | undefined>(undefined);
   readonly isLoading = signal(true);
   readonly loadError = signal<string | undefined>(undefined);
-
-  getAnswerLabel(index: number): string {
-    return String.fromCharCode(65 + index);
-  }
+  readonly getAnswerLabel = getAnswerLabelForIndex;
 
   readonly getAnswerVoteCount = getAnswerVoteCount;
   readonly getQuestionVoteCount = getQuestionVoteCount;

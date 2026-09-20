@@ -7,6 +7,7 @@ import { FirstCharUpperCasePipe } from '../../shared/pipes/first-char-upper-case
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SecButton } from '../../shared/sec-button/sec-button';
 import { VoteModel } from '../../shared/models/votemodel';
+import { getAnswerLabel as getAnswerLabelForIndex } from '../../shared/utils/answer-label';
 
 
 @Component({
@@ -20,10 +21,7 @@ export class VoteContent {
   readonly survices = inject(Survices);
   readonly survey = signal<Survey | undefined>(undefined);
   readonly voteForm = new FormGroup<Record<string, FormControl<boolean>>>({});
-
-  getAnswerLabel(index: number): string {
-    return String.fromCharCode(65 + index);
-  }
+  readonly getAnswerLabel = getAnswerLabelForIndex;
 
   async ngOnInit() {
     const surveys = await this.survices.getSurveys();

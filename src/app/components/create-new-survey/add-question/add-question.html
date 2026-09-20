@@ -9,17 +9,25 @@
       </div>
     </div>
     <p class="input_with_delete">
-      <input id="question{{ questionNumber() }}" type="text" formControlName="question">
+      <input id="question{{ questionNumber() }}" type="text" formControlName="question" required>
       <trashcan (click)="delete('question')" />
     </p>
+    @if (questionForm().controls.question.invalid && questionForm().controls.question.touched) {
+      <p class="validation_message" role="alert">This field is required.</p>
+    }
 
     <label for="answer">Answer</label>
     <div class="answers" formArrayName="answers">
       @for (answer of answers.controls; track $index) {
-        <p class="input_with_delete">{{ answerNumbers[$index] }}. <input
-            id="answer{{ questionNumber() }}Index{{ $index }}" type="text" [formControlName]="$index">
-          <trashcan (click)="delete('answers', $index)" />
-        </p>
+        <div class="answer_field">
+          <p class="input_with_delete">{{ getAnswerLabel($index) }}. <input
+              id="answer{{ questionNumber() }}Index{{ $index }}" type="text" [formControlName]="$index" required>
+            <trashcan (click)="delete('answers', $index)" />
+          </p>
+          @if (answer.invalid && answer.touched) {
+            <p class="validation_message" role="alert">This field is required.</p>
+          }
+        </div>
       }
     </div>
     <add-answer-button (add)="addAnswer()"></add-answer-button>

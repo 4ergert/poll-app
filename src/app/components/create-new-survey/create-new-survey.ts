@@ -1,6 +1,6 @@
 import { Component, output } from '@angular/core';
 import { CnsHeader } from './cns-header/cns-header';
-import { SurveyForm } from '../shared/survey-form/survey-form';
+import { SurveyForm } from './survey-form/survey-form';
 
 @Component({
   selector: 'app-create-new-survey',
