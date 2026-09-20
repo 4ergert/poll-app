@@ -51,6 +51,14 @@
     gap: 8px;
   }
 
+  &__multiple_choice_hint {
+    margin: 0;
+    color: #72524a;
+    font-family: Mulish;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
   &__submit {
     --background-color: #f7decd;
     --text-color: #35273a;

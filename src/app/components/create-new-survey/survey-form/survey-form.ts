@@ -18,7 +18,7 @@ export class SurveyForm {
     {
       name: new FormControl('', Validators.required),
       date: new FormControl(new Date(2023, 4, 11)),
-      category: new FormControl(''),
+      category: new FormControl('', Validators.required),
       describing: new FormControl(''),
       questions: new FormArray([this.createQuestionForm()]),
     }

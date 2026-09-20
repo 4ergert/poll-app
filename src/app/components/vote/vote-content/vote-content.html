@@ -15,10 +15,14 @@
     @for (survey of selectedSurvey.questions; track $index; let questionIndex = $index) {
     <section class="vote_content__question">
       <h4>{{ survey.question | questionMark | firstCharUpperCase }}</h4>
+      @if (survey.multipleChoice) {
+        <p class="vote_content__multiple_choice_hint">More than one answers are possible.</p>
+      }
       @for (answer of survey.answers; track $index; let answerIndex = $index) {
       <section class="vote_section">
         <input type="checkbox" [id]="getControlName(questionIndex, answerIndex)"
-          [formControlName]="getControlName(questionIndex, answerIndex)">
+          [formControlName]="getControlName(questionIndex, answerIndex)"
+          (change)="onAnswerChange(questionIndex, answerIndex, survey.multipleChoice, survey.answers.length, $any($event.target).checked)">
         <p><span class="vote_section__label">{{ getAnswerLabel($index) }}. </span><span class="vote_section__answer">{{
             answer | firstCharUpperCase}}</span></p>
       </section>

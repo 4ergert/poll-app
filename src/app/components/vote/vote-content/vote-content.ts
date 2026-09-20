@@ -50,6 +50,24 @@ export class VoteContent {
     await this.survices.updateVote(survey.id, vote);
   }
 
+  onAnswerChange(
+    questionIndex: number,
+    selectedAnswerIndex: number,
+    multipleChoice: boolean,
+    answerCount: number,
+    isSelected: boolean,
+  ) {
+    if (multipleChoice || !isSelected) return;
+
+    for (let answerIndex = 0; answerIndex < answerCount; answerIndex += 1) {
+      if (answerIndex !== selectedAnswerIndex) {
+        this.voteForm.controls[
+          this.getControlName(questionIndex, answerIndex)
+        ].setValue(false);
+      }
+    }
+  }
+
   getControlName(questionIndex: number, answerIndex: number): string {
     return VoteModel.getControlName(questionIndex, answerIndex);
   }
