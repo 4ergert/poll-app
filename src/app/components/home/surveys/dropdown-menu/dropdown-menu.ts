@@ -1,5 +1,5 @@
 import { Component, output } from '@angular/core';
-import { SURVEY_CATEGORIES } from '../utils/survey-categories';
+import { SURVEY_CATEGORIES } from '../../../shared/utils/survey-categories';
 
 @Component({
   selector: 'dropdown-menu',

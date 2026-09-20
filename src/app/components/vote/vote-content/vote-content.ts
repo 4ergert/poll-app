@@ -8,6 +8,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SecButton } from '../../shared/sec-button/sec-button';
 import { VoteModel } from '../../shared/models/votemodel';
 import { getAnswerLabel as getAnswerLabelForIndex } from '../../shared/utils/answer-label';
+import { isSurveyActive } from '../../shared/utils/date';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class VoteContent {
   readonly survey = signal<Survey | undefined>(undefined);
   readonly voteForm = new FormGroup<Record<string, FormControl<boolean>>>({});
   readonly getAnswerLabel = getAnswerLabelForIndex;
+  readonly isSurveyActive = isSurveyActive;
 
   async ngOnInit() {
     const surveys = await this.survices.getSurveys();
@@ -44,6 +46,10 @@ export class VoteContent {
 
     if (survey?.id === undefined) {
       throw new Error('Survey was not found.');
+    }
+
+    if (!this.isSurveyActive(survey.date)) {
+      throw new Error('This survey has ended and can no longer be completed.');
     }
 
     const vote = new VoteModel(survey, this.voteForm.getRawValue());

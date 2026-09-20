@@ -1,8 +1,18 @@
 <section class="overview">
   <div class="overview_header">
     <div class="overview_header_buttons">
-      <overview-button>Active surveys</overview-button>
-      <overview-button>Past surveys</overview-button>
+      <overview-button
+        surveyStatus="active"
+        [(selectedSurveyStatus)]="selectedSurveyStatus"
+      >
+        Active surveys
+      </overview-button>
+      <overview-button
+        surveyStatus="past"
+        [(selectedSurveyStatus)]="selectedSurveyStatus"
+      >
+        Past surveys
+      </overview-button>
     </div>
     <dropdown-menu (categorySelected)="selectCategory($event)"></dropdown-menu>
   </div>

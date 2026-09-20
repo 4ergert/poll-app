@@ -5,3 +5,10 @@ export function getEndsInDays(endDate: Date | string): number {
 
   return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 }
+
+export function isSurveyActive(endDate: Date | string, now = new Date()): boolean {
+  const end = new Date(endDate);
+  end.setHours(23, 59, 59, 999);
+
+  return end.getTime() >= now.getTime();
+}

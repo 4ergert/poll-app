@@ -30,12 +30,14 @@
     </section>
     }
 
-    <sec-button
-      class="vote_content__submit"
-      type="submit"
-    >
-      Complete survey
-    </sec-button>
+    @if (isSurveyActive(selectedSurvey.date)) {
+      <sec-button
+        class="vote_content__submit"
+        type="submit"
+      >
+        Complete survey
+      </sec-button>
+    }
   </form>
 
   } @else {
