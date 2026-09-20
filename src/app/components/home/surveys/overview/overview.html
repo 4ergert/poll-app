@@ -4,10 +4,10 @@
       <overview-button>Active surveys</overview-button>
       <overview-button>Past surveys</overview-button>
     </div>
-    <dropdown-menu></dropdown-menu>
+    <dropdown-menu (categorySelected)="selectCategory($event)"></dropdown-menu>
   </div>
   <section id="surveysOverview">
-    @for (survey of allSurveys(); track $index) {
+    @for (survey of displayedSurveys(); track survey.id) {
       <survey-card class="survey_card" [routerLink]="['/vote', survey.id]">
         <div>
           <p class="survey_card__category"> {{ survey.category }} </p>

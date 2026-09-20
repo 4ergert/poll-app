@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DropdownMenu } from '../../../shared/dropdown-menu/dropdown-menu';
 import { Card } from './card/card';
@@ -16,6 +16,15 @@ import { OverviewButton } from './button/button';
 export class Overview {
   readonly surveyService = inject(Survices);
   readonly allSurveys = signal<Survey[]>([]);
+  readonly selectedCategory = signal('allSurveys');
+  readonly displayedSurveys = computed(() => {
+    const selectedCategory = this.selectedCategory();
+    const surveys = this.allSurveys();
+
+    return selectedCategory === 'allSurveys'
+      ? surveys
+      : surveys.filter((survey) => survey.category === selectedCategory);
+  });
   readonly getEndsInDays = getEndsInDays;
 
   async ngOnInit() {
@@ -26,5 +35,9 @@ export class Overview {
     const surveys = await this.surveyService.getSurveys();
     this.allSurveys.set(surveys);
     return surveys;
+  }
+
+  selectCategory(category: string) {
+    this.selectedCategory.set(category);
   }
 }

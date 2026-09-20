@@ -6,6 +6,7 @@ import { Trashcan } from '../../shared/trashcan/trashcan';
 import { SecButton } from '../../shared/sec-button/sec-button';
 import { Survices } from '../../shared/services/survices';
 import { SurveyModel } from '../../shared/models/surveymodel';
+import { SURVEY_CATEGORIES } from '../../shared/utils/survey-categories';
 
 @Component({
   selector: 'survey-form',
@@ -14,6 +15,7 @@ import { SurveyModel } from '../../shared/models/surveymodel';
   styleUrl: './survey-form.scss',
 })
 export class SurveyForm {
+  readonly categories = SURVEY_CATEGORIES;
   surveyForm = new FormGroup(
     {
       name: new FormControl('', Validators.required),

@@ -1,3 +1,6 @@
-<select name="Sort by categories" id="overviewSortByCategories">
+<select name="Sort by categories" id="overviewSortByCategories" (change)="onCategoryChange($event)">
   <option value="" selected disabled>Sort by categories</option>
+  @for (category of categories; track category.value) {
+    <option [value]="category.value">{{ category.label }}</option>
+  }
 </select>

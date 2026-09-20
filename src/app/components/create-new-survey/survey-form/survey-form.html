@@ -24,14 +24,9 @@
           <div>
             <select class="choose_category" name="choose category" id="chooseCategory" formControlName="category" required>
               <option value="" hidden selected>Choose category</option>
-              <option value="allSurveys">All Surveys</option>
-              <option value="teamActivities">Team Activities</option>
-              <option value="healthAndWellness">Health & Wellness</option>
-              <option value="gaming">Gaming & Entertainment</option>
-              <option value="educationAndLearning">Education & Learning</option>
-              <option value="lifestyleAndPreferences">Lifestyle & Preferences</option>
-              <option value="educationAndLearning">Education & Learning</option>
-              <option value="technologyAndInnovation">Technology & Innovation</option>
+              @for (category of categories; track category.value) {
+                <option [value]="category.value">{{ category.label }}</option>
+              }
             </select>
             @if (surveyForm.controls.category.invalid && surveyForm.controls.category.touched) {
               <p class="validation_message" role="alert">This field is required.</p>
