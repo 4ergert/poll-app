@@ -1,19 +1,51 @@
-import { Injectable } from '@angular/core';
-import { createClient } from '@supabase/supabase-js';
+import { Injectable, OnDestroy, signal } from '@angular/core';
+import { createClient, RealtimeChannel } from '@supabase/supabase-js';
 import { SurveyModel } from '../models/surveymodel';
+import { Survey } from '../interfaces/survey';
 import { Vote } from '../interfaces/vote';
 import { mergeVotes } from '../utils/vote';
 
 @Injectable({
   providedIn: 'root',
 })
-export class Survices {
+export class Survices implements OnDestroy {
   private readonly supabase = createClient(
     'https://ifoidagatwwfdivhzvcw.supabase.co',
     'sb_publishable_ceUCpzz33kkThuMO6nTylg_kYwvskeQ',
   );
 
-  async getSurveys() {
+  readonly surveys = signal<Survey[]>([]);
+  private readonly channel: RealtimeChannel;
+
+  constructor() {
+    this.channel = this.supabase.channel('survey-form-changes')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'Survey_Form' },
+        (payload) => {
+          if (payload.eventType === 'DELETE') {
+            const id = payload.old['id'];
+
+            if (typeof id === 'number') {
+              this.surveys.update((surveys) =>
+                surveys.filter((survey) => survey.id !== id),
+              );
+            }
+
+            return;
+          }
+
+          this.upsertSurvey(payload.new as Survey);
+        }
+      )
+      .subscribe();
+  }
+
+  ngOnDestroy() {
+    this.supabase.removeChannel(this.channel);
+  }
+
+  async getSurveys(): Promise<Survey[]> {
     const { data, error } = await this.supabase
       .from('Survey_Form')
       .select('*');
@@ -22,17 +54,23 @@ export class Survices {
       throw error;
     }
 
+    this.surveys.set(data);
+
     return data;
   }
 
   async saveSurvey(survey: SurveyModel) {
-    const { error } = await this.supabase
+    const { data, error } = await this.supabase
       .from('Survey_Form')
-      .insert(survey);
+      .insert(survey)
+      .select()
+      .single();
 
     if (error) {
       throw error;
     }
+
+    this.upsertSurvey(data);
   }
 
   async updateVote(id: number, newVote: Vote) {
@@ -48,16 +86,50 @@ export class Survices {
 
     const vote = mergeVotes(data.vote, newVote);
 
-    const { error } = await this.supabase
+    const { data: updatedSurvey, error } = await this.supabase
       .from('Survey_Form')
       .update({
         vote,
       })
-      .eq('id', id);
+      .eq('id', id)
+      .select()
+      .single();
 
     if (error) {
       throw error;
     }
+
+    this.upsertSurvey(updatedSurvey);
   }
 
+  async updateSurvey(survey: SurveyModel) {
+    const { data, error } = await this.supabase
+      .from('Survey_Form')
+      .update(survey)
+      .eq('id', survey.id)
+      .select()
+      .single();
+
+    if (error) {
+      throw error;
+    }
+
+    this.upsertSurvey(data);
+  }
+
+  private upsertSurvey(updatedSurvey: Survey) {
+    this.surveys.update((surveys) => {
+      const surveyIndex = surveys.findIndex(
+        (survey) => survey.id === updatedSurvey.id,
+      );
+
+      if (surveyIndex === -1) {
+        return [...surveys, updatedSurvey];
+      }
+
+      return surveys.map((survey, index) =>
+        index === surveyIndex ? updatedSurvey : survey,
+      );
+    });
+  }
 }

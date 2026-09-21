@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { Survices } from '../../shared/services/survices';
 import { ActivatedRoute } from '@angular/router';
 import { Survey } from '../../shared/interfaces/survey';
@@ -21,7 +21,9 @@ import { getAnswerLabel as getAnswerLabelForIndex } from '../../shared/utils/ans
 export class SurveyResults {
   readonly survices = inject(Survices);
   readonly surveyId = inject(ActivatedRoute).snapshot.paramMap.get('id');
-  readonly survey = signal<Survey | undefined>(undefined);
+  readonly survey = computed(() =>
+    this.survices.surveys().find((survey) => String(survey.id) === this.surveyId),
+  );
   readonly isLoading = signal(true);
   readonly loadError = signal<string | undefined>(undefined);
   readonly getAnswerLabel = getAnswerLabelForIndex;
@@ -32,9 +34,7 @@ export class SurveyResults {
 
   async ngOnInit() {
     try {
-      const surveys = await this.survices.getSurveys();
-
-      this.survey.set(surveys.find((survey) => String(survey.id) === this.surveyId));
+      await this.survices.getSurveys();
     } catch (error) {
       const message = error instanceof Error
         ? error.message

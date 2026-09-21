@@ -15,7 +15,7 @@ import { OverviewButton } from './button/button';
 })
 export class Overview {
   readonly surveyService = inject(Survices);
-  readonly allSurveys = signal<Survey[]>([]);
+  readonly allSurveys = this.surveyService.surveys;
   readonly selectedCategory = signal('allSurveys');
   readonly selectedSurveyStatus = signal<'active' | 'past'>('active');
   readonly displayedSurveys = computed(() => {
@@ -39,9 +39,7 @@ export class Overview {
   }
 
   async getAllSurveys() {
-    const surveys = await this.surveyService.getSurveys();
-    this.allSurveys.set(surveys);
-    return surveys;
+    return this.surveyService.getSurveys();
   }
 
   selectCategory(category: string) {

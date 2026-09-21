@@ -1,7 +1,6 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { EndingSurvey } from './ending-survey/ending-survey';
-import { Survey } from '../../../shared/interfaces/survey';
 import { Survices } from '../../../shared/services/survices';
 import { getEndsInDays } from '../../../shared/utils/date';
 import { getEndingSoonSurveys } from '../../../shared/utils/survey';
@@ -14,7 +13,9 @@ import { getEndingSoonSurveys } from '../../../shared/utils/survey';
 })
 export class EndingSoon {
   readonly surveyService = inject(Survices);
-  readonly endingSoonSurveys = signal<Survey[]>([]);
+  readonly endingSoonSurveys = computed(() =>
+    getEndingSoonSurveys(this.surveyService.surveys()),
+  );
   readonly getEndsInDays = getEndsInDays;
 
 
@@ -23,8 +24,6 @@ export class EndingSoon {
   }
 
   async getEndingSoonSurveys() {
-    const surveys = await this.surveyService.getSurveys();
-
-    this.endingSoonSurveys.set(getEndingSoonSurveys(surveys));
+    await this.surveyService.getSurveys();
   }
 }

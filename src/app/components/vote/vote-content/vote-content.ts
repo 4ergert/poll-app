@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Survices } from '../../shared/services/survices';
 import { Survey } from '../../shared/interfaces/survey';
@@ -20,25 +20,53 @@ import { isSurveyActive } from '../../shared/utils/date';
 export class VoteContent {
   readonly surveyId = inject(ActivatedRoute).snapshot.paramMap.get('id');
   readonly survices = inject(Survices);
-  readonly survey = signal<Survey | undefined>(undefined);
+  readonly survey = computed(() =>
+    this.survices.surveys().find((survey) => String(survey.id) === this.surveyId),
+  );
   readonly voteForm = new FormGroup<Record<string, FormControl<boolean>>>({});
   readonly getAnswerLabel = getAnswerLabelForIndex;
   readonly isSurveyActive = isSurveyActive;
+  private readonly formVersion = signal(0);
+
+  constructor() {
+    effect(() => {
+      const survey = this.survey();
+
+      if (survey) {
+        this.addVoteControls(survey);
+      }
+    });
+  }
 
   async ngOnInit() {
-    const surveys = await this.survices.getSurveys();
-    const survey = surveys.find((item) => String(item.id) === this.surveyId);
+    await this.survices.getSurveys();
+  }
 
-    this.survey.set(survey);
+  private addVoteControls(survey: Survey) {
+    let controlsAdded = false;
 
-    for (const [questionIndex, question] of (survey?.questions ?? []).entries()) {
+    for (const [questionIndex, question] of survey.questions.entries()) {
       for (const answerIndex of question.answers.keys()) {
-        this.voteForm.addControl(
-          this.getControlName(questionIndex, answerIndex),
-          new FormControl(false, { nonNullable: true }),
-        );
+        const controlName = this.getControlName(questionIndex, answerIndex);
+
+        if (!this.voteForm.contains(controlName)) {
+          this.voteForm.addControl(
+            controlName,
+            new FormControl(false, { nonNullable: true }),
+          );
+          controlsAdded = true;
+        }
       }
     }
+
+    if (controlsAdded) {
+      this.formVersion.update((version) => version + 1);
+    }
+  }
+
+  hasControl(questionIndex: number, answerIndex: number): boolean {
+    this.formVersion();
+    return this.voteForm.contains(this.getControlName(questionIndex, answerIndex));
   }
 
   async onSubmit() {
