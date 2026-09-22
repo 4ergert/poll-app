@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, signal } from '@angular/core';
 import { ReactiveFormsModule, FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Button } from '../../shared/button/button';
 import { AddQuestion, QuestionForm } from '../add-question/add-question';
@@ -14,8 +14,9 @@ import { SURVEY_CATEGORIES } from '../../shared/utils/survey-categories';
   templateUrl: './survey-form.html',
   styleUrl: './survey-form.scss',
 })
-export class SurveyForm {
+export class SurveyForm implements OnDestroy {
   readonly categories = SURVEY_CATEGORIES;
+  readonly isPublishConfirmationVisible = signal(false);
   surveyForm = new FormGroup(
     {
       name: new FormControl('', Validators.required),
@@ -27,6 +28,7 @@ export class SurveyForm {
   );
   readonly questions = this.surveyForm.controls.questions;
   surveyService: Survices = inject(Survices);
+  private publishConfirmationTimeout?: ReturnType<typeof setTimeout>;
 
   async onSubmit() {
     if (this.surveyForm.invalid) {
@@ -48,6 +50,7 @@ export class SurveyForm {
     });
 
     await this.surveyService.saveSurvey(surveyData);
+    this.showPublishConfirmation();
 
     this.surveyForm.controls.name.reset('');
     this.surveyForm.controls.date.reset(new Date(2023, 4, 11));
@@ -56,6 +59,12 @@ export class SurveyForm {
     this.questions.push(this.createQuestionForm());
     this.surveyForm.markAsPristine();
     this.surveyForm.markAsUntouched();
+  }
+
+  ngOnDestroy() {
+    if (this.publishConfirmationTimeout) {
+      clearTimeout(this.publishConfirmationTimeout);
+    }
   }
 
   addQuestion() {
@@ -87,5 +96,17 @@ export class SurveyForm {
       default:
         break;
     }
+  }
+
+  private showPublishConfirmation() {
+    if (this.publishConfirmationTimeout) {
+      clearTimeout(this.publishConfirmationTimeout);
+    }
+
+    this.isPublishConfirmationVisible.set(true);
+    this.publishConfirmationTimeout = setTimeout(() => {
+      this.isPublishConfirmationVisible.set(false);
+      this.publishConfirmationTimeout = undefined;
+    }, 4_000);
   }
 }

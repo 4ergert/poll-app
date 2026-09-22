@@ -90,6 +90,7 @@ textarea {
 }
 
 .submit_button {
+  position: relative;
   margin-top: 20px;
   width: 100%;
   display: flex;
@@ -130,5 +131,33 @@ textarea {
   & img {
     width: 24px;
     height: 24px;
+  }
+}
+
+.publish_confirmation {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 16px 24px;
+  border-radius: 5px 20px 5px 5px;
+  background-color: #fee9d4;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 25%);
+  color: #35273a;
+  font-family: Mulish, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  animation: slide-in-from-right 250ms ease-out;
+}
+
+@keyframes slide-in-from-right {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
   }
 }

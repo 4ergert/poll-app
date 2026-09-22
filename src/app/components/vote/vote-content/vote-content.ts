@@ -1,5 +1,5 @@
 import { Component, computed, effect, inject, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Survices } from '../../shared/services/survices';
 import { Survey } from '../../shared/interfaces/survey';
 import { QuestionMarkPipe } from '../../shared/pipes/question-mark-pipe';
@@ -20,12 +20,14 @@ import { isSurveyActive } from '../../shared/utils/date';
 export class VoteContent {
   readonly surveyId = inject(ActivatedRoute).snapshot.paramMap.get('id');
   readonly survices = inject(Survices);
+  readonly router = inject(Router);
   readonly survey = computed(() =>
     this.survices.surveys().find((survey) => String(survey.id) === this.surveyId),
   );
   readonly voteForm = new FormGroup<Record<string, FormControl<boolean>>>({});
   readonly getAnswerLabel = getAnswerLabelForIndex;
   readonly isSurveyActive = isSurveyActive;
+  readonly isSurveyCompleted = signal(false);
   private readonly formVersion = signal(0);
 
   constructor() {
@@ -70,6 +72,11 @@ export class VoteContent {
   }
 
   async onSubmit() {
+    if (this.isSurveyCompleted()) {
+      await this.router.navigateByUrl('/');
+      return;
+    }
+
     const survey = this.survey();
 
     if (survey?.id === undefined) {
@@ -82,6 +89,8 @@ export class VoteContent {
 
     const vote = new VoteModel(survey, this.voteForm.getRawValue());
     await this.survices.updateVote(survey.id, vote);
+    this.voteForm.reset();
+    this.isSurveyCompleted.set(true);
   }
 
   onAnswerChange(

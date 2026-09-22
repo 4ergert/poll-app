@@ -64,6 +64,11 @@
 
   <section class="submit_button">
     <poll-app-button type="submit" icon="check">Publish</poll-app-button>
+    @if (isPublishConfirmationVisible()) {
+      <aside class="publish_confirmation" role="status" aria-live="polite">
+        Your survey is now published
+      </aside>
+    }
   </section>
 
 </form>

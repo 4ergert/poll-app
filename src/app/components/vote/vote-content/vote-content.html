@@ -32,12 +32,12 @@
     </section>
     }
 
-    @if (isSurveyActive(selectedSurvey.date)) {
+    @if (isSurveyActive(selectedSurvey.date) || isSurveyCompleted()) {
       <sec-button
         class="vote_content__submit"
         type="submit"
       >
-        Complete survey
+        {{ isSurveyCompleted() ? 'Back to home' : 'Complete survey' }}
       </sec-button>
     }
   </form>
