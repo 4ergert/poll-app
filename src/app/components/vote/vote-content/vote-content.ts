@@ -68,7 +68,7 @@ export class VoteContent {
 
   hasControl(questionIndex: number, answerIndex: number): boolean {
     this.formVersion();
-    return this.voteForm.contains(this.getControlName(questionIndex, answerIndex));
+    return this.voteForm.get(this.getControlName(questionIndex, answerIndex)) !== null;
   }
 
   async onSubmit() {
@@ -89,7 +89,7 @@ export class VoteContent {
 
     const vote = new VoteModel(survey, this.voteForm.getRawValue());
     await this.survices.updateVote(survey.id, vote);
-    this.voteForm.reset();
+    this.voteForm.disable();
     this.isSurveyCompleted.set(true);
   }
 
