@@ -23,7 +23,11 @@
           <p class="survey_card__category"> {{ survey.category }} </p>
           <h5 class="survey_card__h5"> {{ survey.name }} </h5>
         </div>
-        <p class="survey_card__ends-in">Ends in {{ getEndsInDays(survey.date) }} days</p>
+        @if (isSurveyActive(survey.date)) {
+          <p class="survey_card__ends-in">Ends in {{ getEndsInDays(survey.date) }} days</p>
+        } @else {
+          <p class="survey_card__ends-in">Ended on {{ survey.date | date:'mediumDate' }}</p>
+        }
       </survey-card>
     }
   </section>

@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DropdownMenu } from '../dropdown-menu/dropdown-menu';
@@ -9,7 +10,7 @@ import { OverviewButton } from './button/button';
 
 @Component({
   selector: 'app-overview',
-  imports: [DropdownMenu, Card, OverviewButton, RouterLink],
+  imports: [DropdownMenu, Card, OverviewButton, RouterLink, DatePipe],
   templateUrl: './overview.html',
   styleUrl: './overview.scss',
 })
@@ -33,6 +34,7 @@ export class Overview {
       : surveysByStatus.filter((survey) => survey.category === selectedCategory);
   });
   readonly getEndsInDays = getEndsInDays;
+  readonly isSurveyActive = isSurveyActive;
 
   async ngOnInit() {
     await this.getAllSurveys();
