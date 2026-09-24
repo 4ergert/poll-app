@@ -14,6 +14,7 @@ import { OverviewButton } from './button/button';
   templateUrl: './overview.html',
   styleUrl: './overview.scss',
 })
+/** Filters and displays surveys by category and active status. */
 export class Overview {
   readonly surveyService = inject(Survices);
   readonly allSurveys = this.surveyService.surveys;
@@ -40,10 +41,12 @@ export class Overview {
     await this.getAllSurveys();
   }
 
+  /** Refreshes and returns all surveys from the backing service. */
   async getAllSurveys() {
     return this.surveyService.getSurveys();
   }
 
+  /** Applies the selected category to the displayed survey list. */
   selectCategory(category: string) {
     this.selectedCategory.set(category);
   }

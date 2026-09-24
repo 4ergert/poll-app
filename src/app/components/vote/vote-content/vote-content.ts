@@ -17,6 +17,7 @@ import { isSurveyActive } from '../../shared/utils/date';
   templateUrl: './vote-content.html',
   styleUrl: './vote-content.scss',
 })
+/** Builds and submits the answer form for the routed survey. */
 export class VoteContent {
   readonly surveyId = inject(ActivatedRoute).snapshot.paramMap.get('id');
   readonly survices = inject(Survices);
@@ -27,6 +28,7 @@ export class VoteContent {
   readonly voteForm = new FormGroup<Record<string, FormControl<boolean>>>({});
   readonly getAnswerLabel = getAnswerLabelForIndex;
   readonly isSurveyActive = isSurveyActive;
+  /** Tracks whether the current vote was successfully saved. */
   readonly isSurveyCompleted = signal(false);
   private readonly formVersion = signal(0);
 
@@ -66,11 +68,16 @@ export class VoteContent {
     }
   }
 
+  /** Checks whether the generated form contains a control for an answer. */
   hasControl(questionIndex: number, answerIndex: number): boolean {
     this.formVersion();
     return this.voteForm.get(this.getControlName(questionIndex, answerIndex)) !== null;
   }
 
+  /**
+   * Saves the selected answers on the first submission.
+   * Subsequent submissions return the user to the home page.
+   */
   async onSubmit() {
     if (this.isSurveyCompleted()) {
       await this.router.navigateByUrl('/');
@@ -93,6 +100,7 @@ export class VoteContent {
     this.isSurveyCompleted.set(true);
   }
 
+  /** Clears sibling answers when a single-choice answer is selected. */
   onAnswerChange(
     questionIndex: number,
     selectedAnswerIndex: number,
@@ -111,6 +119,7 @@ export class VoteContent {
     }
   }
 
+  /** Returns the stable form-control name for an answer choice. */
   getControlName(questionIndex: number, answerIndex: number): string {
     return VoteModel.getControlName(questionIndex, answerIndex);
   }

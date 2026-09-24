@@ -1,6 +1,7 @@
 import type { Survey } from '../interfaces/survey';
 import type { VoteQuestion } from '../interfaces/vote';
 
+/** Returns the selection count for one answer in a survey question. */
 export function getAnswerVoteCount(
   survey: Survey,
   questionIndex: number,
@@ -12,12 +13,14 @@ export function getAnswerVoteCount(
     ?.selected.length ?? 0;
 }
 
+/** Returns the total selections recorded for a survey question. */
 export function getQuestionVoteCount(survey: Survey, questionIndex: number): number {
   return getVoteQuestions(survey)
     .find((question) => question.questionIndex === questionIndex)
     ?.answers.reduce((total, answer) => total + answer.selected.length, 0) ?? 0;
 }
 
+/** Returns an answer's rounded percentage of all selections for its question. */
 export function getAnswerVotePercentage(
   survey: Survey,
   questionIndex: number,

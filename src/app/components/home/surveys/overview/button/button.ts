@@ -8,6 +8,7 @@ type SurveyStatus = 'active' | 'past';
   templateUrl: './button.html',
   styleUrl: './button.scss',
 })
+/** Toggle button for selecting active or past surveys. */
 export class OverviewButton {
   readonly surveyStatus = input.required<SurveyStatus>();
   readonly selectedSurveyStatus = model.required<SurveyStatus>();

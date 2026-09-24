@@ -8,6 +8,7 @@ import { HeroDescription } from './hero_description/hero-description';
   templateUrl: './hero.html',
   styleUrl: './hero.scss',
 })
+/** Home-page hero that exposes the create-survey action. */
 export class Hero {
   readonly createSurvey = output<void>();
 }

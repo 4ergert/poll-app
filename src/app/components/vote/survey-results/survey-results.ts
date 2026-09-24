@@ -18,6 +18,7 @@ import { getAnswerLabel as getAnswerLabelForIndex } from '../../shared/utils/ans
   templateUrl: './survey-results.html',
   styleUrl: './survey-results.scss',
 })
+/** Loads and presents aggregated results for the routed survey. */
 export class SurveyResults {
   readonly survices = inject(Survices);
   readonly surveyId = inject(ActivatedRoute).snapshot.paramMap.get('id');

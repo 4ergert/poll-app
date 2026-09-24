@@ -14,6 +14,7 @@ import { SURVEY_CATEGORIES } from '../../shared/utils/survey-categories';
   templateUrl: './survey-form.html',
   styleUrl: './survey-form.scss',
 })
+/** Manages survey creation, validation, persistence, and confirmation feedback. */
 export class SurveyForm implements OnDestroy {
   readonly categories = SURVEY_CATEGORIES;
   readonly isPublishConfirmationVisible = signal(false);
@@ -30,6 +31,7 @@ export class SurveyForm implements OnDestroy {
   surveyService: Survices = inject(Survices);
   private publishConfirmationTimeout?: ReturnType<typeof setTimeout>;
 
+  /** Validates and persists the survey, then resets the form after success. */
   async onSubmit() {
     if (this.surveyForm.invalid) {
       this.surveyForm.markAllAsTouched();
@@ -67,6 +69,7 @@ export class SurveyForm implements OnDestroy {
     }
   }
 
+  /** Appends a new question with two required answer fields. */
   addQuestion() {
     this.questions.push(this.createQuestionForm());
   }
@@ -82,6 +85,7 @@ export class SurveyForm implements OnDestroy {
     });
   }
 
+  /** Resets a supported top-level survey field to its initial value. */
   delete(field: string) {
     switch (field) {
       case 'name':

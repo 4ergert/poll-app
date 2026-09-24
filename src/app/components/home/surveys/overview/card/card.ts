@@ -6,4 +6,5 @@ import { Component } from '@angular/core';
   templateUrl: './card.html',
   styleUrl: './card.scss',
 })
+/** Presentational container for a survey summary. */
 export class Card {}

@@ -10,6 +10,7 @@ import { SurveyResults } from './survey-results/survey-results';
   templateUrl: './vote.html',
   styleUrl: './vote.scss',
 })
+/** Hosts voting and result views for the selected survey. */
 export class Vote {
   readonly dialogService = inject(DialogService);
 }

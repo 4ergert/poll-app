@@ -12,6 +12,7 @@ import { DialogService } from '../shared/services/dialog.service';
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
+/** Home page that loads surveys and coordinates the creation dialog. */
 export class Home {
   surveyService = inject(Survices);
   readonly dialogService = inject(DialogService);
@@ -20,6 +21,7 @@ export class Home {
     this.surveyService.getSurveys();
   }
 
+  /** Opens the create-survey dialog. */
   openCreateSurveyDialog() {
     this.dialogService.openCreateSurveyDialog();
   }

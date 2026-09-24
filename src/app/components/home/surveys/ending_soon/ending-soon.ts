@@ -11,6 +11,7 @@ import { getEndingSoonSurveys } from '../../../shared/utils/survey';
   templateUrl: './ending-soon.html',
   styleUrl: './ending-soon.scss',
 })
+/** Displays the active surveys with the nearest end dates. */
 export class EndingSoon {
   readonly surveyService = inject(Survices);
   readonly endingSoonSurveys = computed(() =>
@@ -23,6 +24,7 @@ export class EndingSoon {
     this.getEndingSoonSurveys();
   }
 
+  /** Refreshes the survey collection used by the ending-soon view. */
   async getEndingSoonSurveys() {
     await this.surveyService.getSurveys();
   }

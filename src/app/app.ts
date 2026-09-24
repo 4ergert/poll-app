@@ -9,6 +9,7 @@ import { DialogService } from './components/shared/services/dialog.service';
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
+/** Root component that hosts routing and the create-survey dialog. */
 export class App {
   protected readonly title = signal('poll-app');
   readonly dialogService = inject(DialogService);

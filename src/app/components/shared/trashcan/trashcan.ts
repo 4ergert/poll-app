@@ -6,4 +6,5 @@ import { Component } from '@angular/core';
   templateUrl: './trashcan.html',
   styleUrl: './trashcan.scss',
 })
+/** Presentational trash-can icon used by delete controls. */
 export class Trashcan {}

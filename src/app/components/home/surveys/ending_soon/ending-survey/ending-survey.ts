@@ -6,4 +6,5 @@ import { Component } from '@angular/core';
   templateUrl: './ending-survey.html',
   styleUrl: './ending-survey.scss',
 })
+/** Presentational card for a survey that is ending soon. */
 export class EndingSurvey {}

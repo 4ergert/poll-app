@@ -6,4 +6,5 @@ import { Component } from '@angular/core';
   templateUrl: './img-animation.html',
   styleUrl: './img-animation.scss',
 })
+/** Decorative image animation displayed in the home-page hero. */
 export class ImgAnimation {}

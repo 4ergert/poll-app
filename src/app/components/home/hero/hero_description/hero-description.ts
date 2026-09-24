@@ -8,6 +8,7 @@ import { Button } from '../../../shared/button/button';
   templateUrl: './hero-description.html',
   styleUrl: './hero-description.scss',
 })
+/** Hero copy and call to action for creating a survey. */
 export class HeroDescription {
   readonly createSurvey = output<void>();
 }

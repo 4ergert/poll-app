@@ -1,5 +1,10 @@
 import { Vote } from '../interfaces/vote';
 
+/**
+ * Merges a new submission into stored structured or legacy vote data.
+ *
+ * @throws If the stored vote data does not match a supported format.
+ */
 export function mergeVotes(existingVote: unknown, newVote: Vote): Vote {
   if (existingVote === null) return newVote;
 

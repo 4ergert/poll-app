@@ -1,3 +1,4 @@
+/** Selectable category values and display labels used by survey filters. */
 export const SURVEY_CATEGORIES = [
   { value: 'allSurveys', label: 'All Surveys' },
   { value: 'teamActivities', label: 'Team Activities' },

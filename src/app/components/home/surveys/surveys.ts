@@ -8,4 +8,5 @@ import { EndingSoon } from './ending_soon/ending-soon';
   templateUrl: './surveys.html',
   styleUrl: './surveys.scss',
 })
+/** Groups the overview and ending-soon survey sections. */
 export class Surveys {}

@@ -8,6 +8,7 @@ import { mergeVotes } from '../utils/vote';
 @Injectable({
   providedIn: 'root',
 })
+/** Provides survey persistence, vote updates, and real-time synchronization. */
 export class Survices implements OnDestroy {
   private readonly supabase = createClient(
     'https://ifoidagatwwfdivhzvcw.supabase.co',
@@ -45,6 +46,7 @@ export class Survices implements OnDestroy {
     this.supabase.removeChannel(this.channel);
   }
 
+  /** Loads all surveys and replaces the local survey collection. */
   async getSurveys(): Promise<Survey[]> {
     const { data, error } = await this.supabase
       .from('Survey_Form')
@@ -59,6 +61,7 @@ export class Survices implements OnDestroy {
     return data;
   }
 
+  /** Persists a new survey and merges the returned row into local state. */
   async saveSurvey(survey: SurveyModel) {
     const { data, error } = await this.supabase
       .from('Survey_Form')
@@ -73,6 +76,7 @@ export class Survices implements OnDestroy {
     this.upsertSurvey(data);
   }
 
+  /** Merges a submitted vote into the stored vote totals for a survey. */
   async updateVote(id: number, newVote: Vote) {
     const { data, error: selectError } = await this.supabase
       .from('Survey_Form')
@@ -102,6 +106,7 @@ export class Survices implements OnDestroy {
     this.upsertSurvey(updatedSurvey);
   }
 
+  /** Persists an existing survey and refreshes its local representation. */
   async updateSurvey(survey: SurveyModel) {
     const { data, error } = await this.supabase
       .from('Survey_Form')
