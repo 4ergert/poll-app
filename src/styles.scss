@@ -1,2 +1,17 @@
 @use './styles/base/base';
 @use './styles/base/fonts';
+
+.app_body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+body.page-home {
+  background-color: base.$dark-purple;
+}
+
+body.page-vote {
+  background-color: #ffffff;
+}

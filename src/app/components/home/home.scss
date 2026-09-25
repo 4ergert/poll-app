@@ -1,12 +1,15 @@
 @use 'base/base' as base;
 
+.home {
+  width: min(100%, 1440px);
+}
+
 :host {
   display: block;
   box-sizing: border-box;
   min-height: 100vh;
   padding: 39px 111px;
   width: 100%;
-  background-color: base.$dark-purple;
   color: base.$light-orange;
 }
 
