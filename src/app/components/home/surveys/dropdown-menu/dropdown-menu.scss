@@ -1,16 +1,56 @@
-#overviewSortByCategories {
-  background-color: transparent;
-  background: url('/assets/icons/dropdown-arrow.png') no-repeat right center / 20px;
-  border: none;
-  color: #ffffff;
-  font-size: 18px;
-  font-family: 'Mulish', sans-serif;
-  font-weight: 700;
-  padding-right: 16px;
+.dropdown-menu {
+  position: relative;
 }
 
-option {
+#overviewSortByCategories {
+  background: url('/assets/icons/dropdown-arrow.png') no-repeat right center / 24px;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
   font-family: 'Mulish', sans-serif;
+  font-size: 18px;
   font-weight: 700;
+  padding: 0 24px 0 0;
+}
+
+#overviewSortByCategories.is-open {
+  background-image: url('/assets/icons/arrow_up.png');
+  background-size: 24px 24px;
+}
+
+#overviewSortByCategories.has-selection {
+  background-image: url('/assets/icons/arrow_down.png');
+  background-size: 24px 24px;
+}
+
+.category-options {
+  position: absolute;
+  z-index: 1;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 100%;
+  margin: 0;
+  padding: 4px 0;
+  list-style: none;
+  background-color: #221227;
+  border: 1px solid #ffcfa1;
+  border-radius: 4px;
+}
+
+.category-options li {
+  cursor: pointer;
+  color: #ffffff;
+  font-family: 'Mulish', sans-serif;
   font-size: 16px;
+  font-weight: 700;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
+.category-options li:hover,
+.category-options li:focus,
+.category-options li[aria-selected='true'] {
+  outline: none;
+  background-color: #ffcfa1;
+  color: #221227;
 }
