@@ -30,23 +30,6 @@
   scrollbar-gutter: stable;
 }
 
-@media (max-width: 1080px) {
-  .overview {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0 16px;
-  }
-
-  .overview,
-  #surveysOverview {
-    width: 100%;
-  }
-
-  #surveysOverview {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
 .survey_card {
   &__category {
     font-family: Mulish;
@@ -76,5 +59,28 @@
     color: #221227;
     background: #ffcfa1;
     border-top-right-radius: 14px;
+  }
+}
+
+@media (max-width: 1080px) {
+  .overview {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 16px;
+  }
+
+  .overview,
+  #surveysOverview {
+    width: 100%;
+  }
+
+  #surveysOverview {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .overview_header {
+    flex-direction: column;
+    align-items: flex-start;
+    height: 103px;
   }
 }

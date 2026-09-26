@@ -54,3 +54,11 @@
   background-color: #ffcfa1;
   color: #221227;
 }
+
+@media (max-width: 450px) {
+  .category-options {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
