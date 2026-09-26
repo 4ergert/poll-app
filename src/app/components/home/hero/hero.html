@@ -1,4 +1,7 @@
 <section class="hero">
-  <app-hero-description (createSurvey)="createSurvey.emit()"></app-hero-description>
+  <app-hero-description></app-hero-description>
   <app-img-animation></app-img-animation>
+  <poll-app-button class="new-survey-button" (click)="createSurvey.emit()">
+    New survey
+  </poll-app-button>
 </section>

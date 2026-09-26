@@ -24,10 +24,6 @@
   transition: transform 250ms ease-out;
 }
 
-// .hover_area:hover~.speech_bubble {
-//   transform: translate(-50%, -50%) translate(-20px, -10px) scale(1.5);
-// }
-
 .question_mark_bubble {
   position: absolute;
   width: 85px;
@@ -40,10 +36,6 @@
   transition: transform 250ms ease-out;
 }
 
-// .hover_area:hover~.question_mark_bubble {
-//   transform: translate(-50%, -50%) translate(-10px, 0px) rotate(-20deg);
-// }
-
 .check_bubble {
   position: absolute;
   width: 85px;
@@ -54,10 +46,6 @@
   z-index: 1;
   transition: transform 250ms ease-out;
 }
-
-// .hover_area:hover~.check_bubble {
-//   transform: translate(-50%, -50%) translate(50px, 5px) rotate(5deg);
-// }
 
 .star_bubble {
   position: absolute;
@@ -70,10 +58,6 @@
   transition: transform 250ms ease-out;
 }
 
-// .hover_area:hover~.star_bubble {
-//   transform: translate(-50%, -50%) translate(-15px, 5px);
-// }
-
 .hover_area {
   position: absolute;
   width: 47%;
@@ -84,7 +68,7 @@
   z-index: 1111;
 
   &:hover {
-    
+
     &~.speech_bubble {
       transform: translate(-50%, -50%) translate(-20px, -10px) scale(1.5);
     }
@@ -101,9 +85,6 @@
       transform: translate(-50%, -50%) translate(-15px, 5px);
     }
   }
-
-
-
 }
 
 @media (prefers-reduced-motion: reduce) {

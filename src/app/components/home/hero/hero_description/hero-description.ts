@@ -1,14 +1,10 @@
-import { Component, output } from '@angular/core';
-import { Button } from '../../../shared/button/button';
-
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-hero-description',
-  imports: [Button],
+  imports: [],
   templateUrl: './hero-description.html',
   styleUrl: './hero-description.scss',
 })
-/** Hero copy and call to action for creating a survey. */
-export class HeroDescription {
-  readonly createSurvey = output<void>();
-}
+/** Hero copy for the survey landing page. */
+export class HeroDescription {}

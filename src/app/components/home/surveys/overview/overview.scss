@@ -30,6 +30,23 @@
   scrollbar-gutter: stable;
 }
 
+@media (max-width: 1080px) {
+  .overview {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 16px;
+  }
+
+  .overview,
+  #surveysOverview {
+    width: 100%;
+  }
+
+  #surveysOverview {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .survey_card {
   &__category {
     font-family: Mulish;

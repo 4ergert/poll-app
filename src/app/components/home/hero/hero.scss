@@ -1,4 +1,37 @@
 .hero {
-  display: flex;
+  display: grid;
+  grid-template-areas:
+    'description animation'
+    'action animation';
+  grid-template-columns: minmax(0, 1fr) auto;
   justify-content: space-between;
+}
+
+app-hero-description {
+  grid-area: description;
+}
+
+app-img-animation {
+  grid-area: animation;
+}
+
+.new-survey-button {
+  grid-area: action;
+  justify-self: start;
+}
+
+@media (max-width: 1080px) {
+  .hero {
+    grid-template-areas:
+      'description'
+      'animation'
+      'action';
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .new-survey-button {
+    justify-self: center;
+    margin-top: 54px;
+  }
 }

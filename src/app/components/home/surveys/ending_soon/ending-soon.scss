@@ -37,3 +37,29 @@
     border-top-right-radius: 16px;
   }
 }
+
+@media (max-width: 1080px) {
+  :host {
+    align-self: flex-start;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .ending_soon {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #genEndingSurvey {
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+    justify-content: flex-start;
+    gap: 16px;
+    overflow-x: auto;
+  }
+
+  #genEndingSurvey > ending-survey {
+    flex: 0 0 310px;
+  }
+}
