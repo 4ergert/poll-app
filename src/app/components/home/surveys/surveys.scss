@@ -5,3 +5,13 @@
   margin-top: 90px;
   gap: 56px;
 }
+
+@media (max-width: 450px) {
+  h2 {
+    font-size: 54px;
+  }
+
+  .surveys {
+    margin-top: 80px;
+  }
+}

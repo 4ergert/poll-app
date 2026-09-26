@@ -3,3 +3,26 @@ p {
   margin-bottom: 40px;
   color: #ffffff;
 }
+
+.mobile_animation {
+  display: none;
+}
+
+@media (max-width: 1080px) {
+  h1 {
+    font-size: 62px;
+    font-weight: 400;
+  }
+}
+
+@media (max-width: 450px) {
+  .mobile_animation {
+    display: block;
+    width: 250px;
+    height: 250px;
+  }
+
+  p {
+    font-size: 18px;
+  }
+}
