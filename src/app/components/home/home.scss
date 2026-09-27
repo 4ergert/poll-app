@@ -5,7 +5,8 @@
 }
 
 :host {
-  display: block;
+  display: flex;
+  justify-content: center;
   box-sizing: border-box;
   min-height: 100vh;
   padding: 39px 111px;

@@ -3,9 +3,15 @@
   min-height: 100dvh;
 }
 
+.vote_main {
+  display: flex;
+  justify-content: center;
+}
+
 .vote_site {
   display: flex;
   flex-direction: column;
+  width: min(1440px, 100%);
   min-height: 100dvh;
   box-sizing: border-box;
   padding: 42px 111px 0px 111px;
@@ -21,4 +27,57 @@
   display: flex;
   gap: 42px;
   align-items: flex-end;
+}
+
+.survey_results_toggle {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .vote_content_and_survey_results {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  vote-content,
+  .survey_results_panel,
+  survey-results {
+    width: min(702px, 100%);
+  }
+}
+
+@media (max-width: 900px) {
+  .survey_results_panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .survey_results_toggle {
+    display: block;
+    align-self: flex-start;
+    padding: 12px 16px;
+    border: 0;
+    border-radius: 10px;
+    background-color: #ffcfa1;
+    color: #000;
+    cursor: pointer;
+    font-family: Mulish, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .survey_results_toggle:hover {
+    background-color: #ffb770;
+  }
+
+  survey-results.survey_results--hidden {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .vote_site {
+    padding: 42px 16px 0px 16px;
+  }
 }

@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, inject, OnDestroy } from '@angular/core';
+import { Component, inject, OnDestroy, signal } from '@angular/core';
 import { DialogService } from '../shared/services/dialog.service';
 import { Button } from '../shared/button/button';
 import { VoteContent } from './vote-content/vote-content';
@@ -14,6 +14,7 @@ import { SurveyResults } from './survey-results/survey-results';
 /** Hosts voting and result views for the selected survey. */
 export class Vote implements OnDestroy {
   readonly dialogService = inject(DialogService);
+  readonly areSurveyResultsVisible = signal(true);
   private readonly document = inject(DOCUMENT);
 
   constructor() {
@@ -23,5 +24,9 @@ export class Vote implements OnDestroy {
 
   ngOnDestroy() {
     this.document.body.classList.remove('page-vote');
+  }
+
+  toggleSurveyResults() {
+    this.areSurveyResultsVisible.update((isVisible) => !isVisible);
   }
 }
