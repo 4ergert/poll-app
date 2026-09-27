@@ -52,6 +52,7 @@ p {
 
   input {
     flex: 1;
+    min-width: 0;
   }
 }
 
@@ -102,4 +103,12 @@ p {
   font-family: Mulish;
   font-size: 14px;
   font-weight: 400;
+}
+
+@media (max-width: 550px) {
+  .question_header {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
 }

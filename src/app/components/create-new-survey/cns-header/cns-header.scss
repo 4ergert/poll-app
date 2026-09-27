@@ -16,3 +16,18 @@ header {
   flex-direction: column;
   justify-content: flex-end;
 }
+
+@media (max-width: 550px) {
+  header {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .cancel-button {
+    justify-content: flex-start;
+
+    &__label {
+      display: none;
+    }
+  }
+}

@@ -10,3 +10,9 @@
   padding: 72px 24px;
   background-color: #fff;
 }
+
+@media (max-width: 550px) {
+  .dialog_overlay {
+    padding: 0;
+  }
+}

@@ -20,3 +20,9 @@ main {
   background-color: #433349;
   border-radius: 5px 80px 5px 5px;
 }
+
+@media (max-width: 550px) {
+  main {
+    padding: 40px 17.5px;
+  }
+}

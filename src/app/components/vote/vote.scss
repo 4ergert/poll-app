@@ -14,7 +14,7 @@
   width: min(1440px, 100%);
   min-height: 100dvh;
   box-sizing: border-box;
-  padding: 42px 111px 0px 111px;
+  padding: 42px 111px 32px 111px;
   gap: 40px;
 }
 
@@ -102,6 +102,6 @@
 
 @media (max-width: 900px) {
   .vote_site {
-    padding: 42px 16px 0px 16px;
+    padding: 42px 16px 111px;
   }
 }

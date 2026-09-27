@@ -106,6 +106,7 @@
     display: block;
     width: 250px;
     height: 250px;
+    overflow: hidden;
   }
 
   :host(.mobile_animation) .animation {
