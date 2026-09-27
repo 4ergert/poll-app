@@ -1,30 +1,29 @@
 <main class="vote_main">
   <section class="vote_site">
-  
+
     <header class="vote_header">
       <img src="/assets/img/poll-app-dark.png" alt="Poll App Dark Logo" width="119px" height="49px">
-  
+
       <poll-app-button (click)="dialogService.openCreateSurveyDialog()">
         Create survey
       </poll-app-button>
     </header>
-  
+
     <section class="vote_content_and_survey_results">
       <vote-content></vote-content>
       <div class="survey_results_panel">
-        <button
-          type="button"
-          class="survey_results_toggle"
-          [attr.aria-expanded]="areSurveyResultsVisible()"
-          aria-controls="survey-results"
-          (click)="toggleSurveyResults()"
-        >
-          {{ areSurveyResultsVisible() ? 'Hide survey results' : 'Show survey results' }}
+        <button type="button" class="survey_results_toggle" [attr.aria-expanded]="areSurveyResultsVisible()"
+          aria-controls="survey-results" (click)="toggleSurveyResults()">
+          {{ areSurveyResultsVisible() ? 'close results' : 'show results' }}
+          <img class="survey_results_toggle_icon"
+            [class.survey_results_toggle_icon--rotated]="areSurveyResultsVisible()"
+            src="/assets/icons/black_arrow.png" alt="">
+          <img class="survey_results_toggle_icon survey_results_toggle_icon--hover"
+            [class.survey_results_toggle_icon--rotated]="areSurveyResultsVisible()"
+            src="/assets/icons/arrow_up.png" alt="">
         </button>
-        <survey-results
-          id="survey-results"
-          [class.survey_results--hidden]="!areSurveyResultsVisible()"
-        ></survey-results>
+        <survey-results id="survey-results"
+          [class.survey_results--hidden]="!areSurveyResultsVisible()"></survey-results>
       </div>
     </section>
   </section>

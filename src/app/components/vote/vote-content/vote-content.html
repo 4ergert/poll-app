@@ -2,10 +2,13 @@
 
   @if (survey(); as selectedSurvey) {
   <div>
-    <p class="vote_content__published">Published</p>
+    <div class="vote_content__published_and_button">
+      <p class="vote_content__published">Published</p>
+      <button type="button" routerLink="/">X</button>
+    </div>
     <div class="vote_content__header">
       <p>Ends on {{ selectedSurvey.date }}</p>
-      <p>{{ selectedSurvey.category }}</p>
+      <p>{{ selectedSurvey.category | andMark }}</p>
     </div>
     <h3>{{ selectedSurvey.name }}</h3>
     <p class="vote_content__describing">{{ selectedSurvey.describing }}</p>

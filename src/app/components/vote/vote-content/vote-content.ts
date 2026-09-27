@@ -1,5 +1,6 @@
 import { Component, computed, effect, inject, signal } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { AndMarkPipe } from '../../shared/pipes/and-to-char-pipe';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Survices } from '../../shared/services/survices';
 import { Survey } from '../../shared/interfaces/survey';
 import { QuestionMarkPipe } from '../../shared/pipes/question-mark-pipe';
@@ -13,7 +14,7 @@ import { isSurveyActive } from '../../shared/utils/date';
 
 @Component({
   selector: 'vote-content',
-  imports: [SecButton, QuestionMarkPipe, FirstCharUpperCasePipe, ReactiveFormsModule],
+  imports: [SecButton, QuestionMarkPipe, FirstCharUpperCasePipe, ReactiveFormsModule, AndMarkPipe, RouterLink],
   templateUrl: './vote-content.html',
   styleUrl: './vote-content.scss',
 })
