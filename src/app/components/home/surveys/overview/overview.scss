@@ -63,13 +63,17 @@
 }
 
 @media (max-width: 1080px) {
+  :host {
+    display: block;
+    width: min(520px, 100%);
+  }
+
   .overview {
     width: 100%;
     box-sizing: border-box;
-    padding: 0 16px;
+    padding: 0;
   }
 
-  .overview,
   #surveysOverview {
     width: 100%;
   }

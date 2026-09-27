@@ -4,7 +4,7 @@ p {
   color: #ffffff;
 }
 
-.mobile_animation {
+app-img-animation.mobile_animation {
   display: none;
 }
 
@@ -16,10 +16,14 @@ p {
 }
 
 @media (max-width: 450px) {
-  .mobile_animation {
+  .hero_description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  app-img-animation.mobile_animation {
     display: block;
-    width: 250px;
-    height: 250px;
   }
 
   p {

@@ -101,4 +101,60 @@
   .animation {
     display: none;
   }
+
+  :host(.mobile_animation) {
+    display: block;
+    width: 250px;
+    height: 250px;
+  }
+
+  :host(.mobile_animation) .animation {
+    display: block;
+    transform: scale(0.58685);
+    transform-origin: top left;
+  }
+
+  :host(.mobile_animation) .hover_area {
+    display: none;
+  }
+
+  :host(.mobile_animation) .speech_bubble {
+    animation: mobile-speech-bubble 700ms ease-out forwards;
+  }
+
+  :host(.mobile_animation) .question_mark_bubble {
+    animation: mobile-question-mark-bubble 700ms ease-out 100ms forwards;
+  }
+
+  :host(.mobile_animation) .check_bubble {
+    animation: mobile-check-bubble 700ms ease-out 200ms forwards;
+  }
+
+  :host(.mobile_animation) .star_bubble {
+    animation: mobile-star-bubble 700ms ease-out 300ms forwards;
+  }
+}
+
+@keyframes mobile-speech-bubble {
+  to {
+    transform: translate(-50%, -50%) translate(-20px, -10px) scale(1.5);
+  }
+}
+
+@keyframes mobile-question-mark-bubble {
+  to {
+    transform: translate(-50%, -50%) translate(-10px, 0) rotate(-20deg);
+  }
+}
+
+@keyframes mobile-check-bubble {
+  to {
+    transform: translate(-50%, -50%) translate(50px, 5px) rotate(5deg);
+  }
+}
+
+@keyframes mobile-star-bubble {
+  to {
+    transform: translate(-50%, -50%) translate(-15px, 5px);
+  }
 }
