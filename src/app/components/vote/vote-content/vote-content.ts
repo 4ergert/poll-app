@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, computed, effect, inject, output, signal } from '@angular/core';
 import { AndMarkPipe } from '../../shared/pipes/and-to-char-pipe';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Survices } from '../../shared/services/survices';
@@ -31,6 +31,7 @@ export class VoteContent {
   readonly isSurveyActive = isSurveyActive;
   /** Tracks whether the current vote was successfully saved. */
   readonly isSurveyCompleted = signal(false);
+  readonly votePreviewChange = output<Record<string, boolean>>();
   private readonly formVersion = signal(0);
 
   constructor() {
@@ -95,6 +96,8 @@ export class VoteContent {
     await this.survices.updateVote(survey.id, vote);
     this.voteForm.disable();
     this.isSurveyCompleted.set(true);
+    this.votePreviewChange.emit({});
+    await this.router.navigateByUrl('/');
   }
 
   /** Clears sibling answers when a single-choice answer is selected. */
@@ -105,15 +108,17 @@ export class VoteContent {
     answerCount: number,
     isSelected: boolean,
   ) {
-    if (multipleChoice || !isSelected) return;
-
-    for (let answerIndex = 0; answerIndex < answerCount; answerIndex += 1) {
-      if (answerIndex !== selectedAnswerIndex) {
-        this.voteForm.controls[
-          this.getControlName(questionIndex, answerIndex)
-        ].setValue(false);
+    if (!multipleChoice && isSelected) {
+      for (let answerIndex = 0; answerIndex < answerCount; answerIndex += 1) {
+        if (answerIndex !== selectedAnswerIndex) {
+          this.voteForm.controls[
+            this.getControlName(questionIndex, answerIndex)
+          ].setValue(false);
+        }
       }
     }
+
+    this.votePreviewChange.emit(this.voteForm.getRawValue());
   }
 
   /** Returns the stable form-control name for an answer choice. */

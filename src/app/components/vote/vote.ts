@@ -16,6 +16,7 @@ import { SurveyResults } from './survey-results/survey-results';
 export class Vote implements OnDestroy {
   readonly dialogService = inject(DialogService);
   readonly areSurveyResultsVisible = signal(true);
+  readonly votePreview = signal<Record<string, boolean>>({});
   private readonly document = inject(DOCUMENT);
 
   constructor() {
@@ -29,5 +30,9 @@ export class Vote implements OnDestroy {
 
   toggleSurveyResults() {
     this.areSurveyResultsVisible.update((isVisible) => !isVisible);
+  }
+
+  updateVotePreview(votePreview: Record<string, boolean>) {
+    this.votePreview.set(votePreview);
   }
 }

@@ -12,7 +12,7 @@
     </header>
 
     <section class="vote_content_and_survey_results">
-      <vote-content></vote-content>
+      <vote-content (votePreviewChange)="updateVotePreview($event)"></vote-content>
       <div class="survey_results_panel">
         <button type="button" class="survey_results_toggle" [attr.aria-expanded]="areSurveyResultsVisible()"
           aria-controls="survey-results" (click)="toggleSurveyResults()">
@@ -25,6 +25,7 @@
             src="assets/icons/arrow_up.png" alt="">
         </button>
         <survey-results id="survey-results"
+          [votePreview]="votePreview()"
           [class.survey_results--hidden]="!areSurveyResultsVisible()"></survey-results>
       </div>
     </section>
