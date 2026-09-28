@@ -21,7 +21,7 @@ export class SurveyForm implements OnDestroy {
   surveyForm = new FormGroup(
     {
       name: new FormControl('', Validators.required),
-      date: new FormControl(new Date(2023, 4, 11)),
+      date: new FormControl<string | null>(null),
       category: new FormControl('', Validators.required),
       describing: new FormControl(''),
       questions: new FormArray([this.createQuestionForm()]),
@@ -41,7 +41,7 @@ export class SurveyForm implements OnDestroy {
     const value = this.surveyForm.getRawValue();
     const surveyData = new SurveyModel({
       name: value.name ?? '',
-      date: value.date ?? new Date(2023, 4, 11),
+      date: this.getEndDate(value.date),
       category: value.category ?? '',
       describing: value.describing ?? '',
       questions: value.questions.map((question) => ({
@@ -55,7 +55,7 @@ export class SurveyForm implements OnDestroy {
     this.showPublishConfirmation();
 
     this.surveyForm.controls.name.reset('');
-    this.surveyForm.controls.date.reset(new Date(2023, 4, 11));
+    this.surveyForm.controls.date.reset(null);
     this.surveyForm.controls.describing.reset('');
     this.questions.clear();
     this.questions.push(this.createQuestionForm());
@@ -92,7 +92,7 @@ export class SurveyForm implements OnDestroy {
         this.surveyForm.controls.name.reset('');
         break;
       case 'date':
-        this.surveyForm.controls.date.reset(new Date(2023, 4, 11));
+        this.surveyForm.controls.date.reset(null);
         break;
       case 'describing':
         this.surveyForm.controls.describing.reset('');
@@ -112,5 +112,16 @@ export class SurveyForm implements OnDestroy {
       this.isPublishConfirmationVisible.set(false);
       this.publishConfirmationTimeout = undefined;
     }, 4_000);
+  }
+
+  /** Returns the selected end date or one calendar year from today when none is supplied. */
+  private getEndDate(date: string | null): Date {
+    if (date) {
+      return new Date(`${date}T00:00:00`);
+    }
+
+    const endDate = new Date();
+    endDate.setFullYear(endDate.getFullYear() + 1);
+    return endDate;
   }
 }

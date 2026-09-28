@@ -80,19 +80,15 @@ export class VoteContent {
    * Subsequent submissions return the user to the home page.
    */
   async onSubmit() {
-    if (this.isSurveyCompleted()) {
-      await this.router.navigateByUrl('/');
-      return;
-    }
-
     const survey = this.survey();
 
     if (survey?.id === undefined) {
       throw new Error('Survey was not found.');
     }
 
-    if (!this.isSurveyActive(survey.date)) {
-      throw new Error('This survey has ended and can no longer be completed.');
+    if (this.isSurveyCompleted() || !this.isSurveyActive(survey.date)) {
+      await this.router.navigateByUrl('/');
+      return;
     }
 
     const vote = new VoteModel(survey, this.voteForm.getRawValue());

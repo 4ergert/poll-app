@@ -24,9 +24,11 @@
       @for (answer of survey.answers; track $index; let answerIndex = $index) {
       @if (hasControl(questionIndex, answerIndex)) {
       <section class="vote_section">
+        @if (isSurveyActive(selectedSurvey.date)) {
         <input type="checkbox" [id]="getControlName(questionIndex, answerIndex)"
           [formControlName]="getControlName(questionIndex, answerIndex)"
           (change)="onAnswerChange(questionIndex, answerIndex, survey.multipleChoice, survey.answers.length, $any($event.target).checked)">
+        }
         <p><span class="vote_section__label">{{ getAnswerLabel($index) }}. </span><span class="vote_section__answer">{{
             answer | firstCharUpperCase}}</span></p>
       </section>
@@ -35,14 +37,12 @@
     </section>
     }
 
-    @if (isSurveyActive(selectedSurvey.date) || isSurveyCompleted()) {
-      <sec-button
-        class="vote_content__submit"
-        type="submit"
-      >
-        {{ isSurveyCompleted() ? 'Back to home' : 'Complete survey' }}
-      </sec-button>
-    }
+    <sec-button
+      class="vote_content__submit"
+      type="submit"
+    >
+      {{ isSurveyCompleted() || !isSurveyActive(selectedSurvey.date) ? 'Back to home' : 'Complete survey' }}
+    </sec-button>
   </form>
 
   } @else {
