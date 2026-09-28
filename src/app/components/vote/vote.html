@@ -2,7 +2,7 @@
   <section class="vote_site">
 
     <header class="vote_header">
-      <img src="/assets/img/poll-app-dark.png" alt="Poll App Dark Logo" width="119px" height="49px">
+      <img src="assets/img/poll-app-dark.png" alt="Poll App Dark Logo" width="119px" height="49px">
 
       <poll-app-button (click)="dialogService.openCreateSurveyDialog()">
         Create survey
@@ -17,10 +17,10 @@
           {{ areSurveyResultsVisible() ? 'close results' : 'show results' }}
           <img class="survey_results_toggle_icon"
             [class.survey_results_toggle_icon--rotated]="areSurveyResultsVisible()"
-            src="/assets/icons/black_arrow.png" alt="">
+            src="assets/icons/black_arrow.png" alt="">
           <img class="survey_results_toggle_icon survey_results_toggle_icon--hover"
             [class.survey_results_toggle_icon--rotated]="areSurveyResultsVisible()"
-            src="/assets/icons/arrow_up.png" alt="">
+            src="assets/icons/arrow_up.png" alt="">
         </button>
         <survey-results id="survey-results"
           [class.survey_results--hidden]="!areSurveyResultsVisible()"></survey-results>

@@ -3,7 +3,7 @@
 }
 
 #overviewSortByCategories {
-  background: url('/assets/icons/dropdown-arrow.png') no-repeat right center / 24px;
+  background: url('../../../../../../public/assets/icons/dropdown-arrow.png') no-repeat right center / 24px;
   border: none;
   color: #ffffff;
   cursor: pointer;
@@ -14,12 +14,12 @@
 }
 
 #overviewSortByCategories.is-open {
-  background-image: url('/assets/icons/arrow_up.png');
+  background-image: url('../../../../../../public/assets/icons/arrow_up.png');
   background-size: 24px 24px;
 }
 
 #overviewSortByCategories.has-selection {
-  background-image: url('/assets/icons/arrow_down.png');
+  background-image: url('../../../../../../public/assets/icons/arrow_down.png');
   background-size: 24px 24px;
 }
 
