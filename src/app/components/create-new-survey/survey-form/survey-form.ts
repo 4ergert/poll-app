@@ -1,5 +1,6 @@
 import { Component, inject, OnDestroy, signal } from '@angular/core';
 import { ReactiveFormsModule, FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Button } from '../../shared/button/button';
 import { AddQuestion, QuestionForm } from '../add-question/add-question';
 import { Trashcan } from '../../shared/trashcan/trashcan';
@@ -7,6 +8,7 @@ import { SecButton } from '../../shared/sec-button/sec-button';
 import { Survices } from '../../shared/services/survices';
 import { SurveyModel } from '../../shared/models/surveymodel';
 import { SURVEY_CATEGORIES } from '../../shared/utils/survey-categories';
+import { DialogService } from '../../shared/services/dialog.service';
 
 @Component({
   selector: 'survey-form',
@@ -29,6 +31,8 @@ export class SurveyForm implements OnDestroy {
   );
   readonly questions = this.surveyForm.controls.questions;
   surveyService: Survices = inject(Survices);
+  private readonly dialogService = inject(DialogService);
+  private readonly router = inject(Router);
   private publishConfirmationTimeout?: ReturnType<typeof setTimeout>;
 
   /** Validates and persists the survey, then resets the form after success. */
@@ -51,16 +55,17 @@ export class SurveyForm implements OnDestroy {
       })),
     });
 
-    await this.surveyService.saveSurvey(surveyData);
-    this.showPublishConfirmation();
+    const savedSurvey = await this.surveyService.saveSurvey(surveyData);
 
-    this.surveyForm.controls.name.reset('');
-    this.surveyForm.controls.date.reset(null);
-    this.surveyForm.controls.describing.reset('');
-    this.questions.clear();
-    this.questions.push(this.createQuestionForm());
-    this.surveyForm.markAsPristine();
-    this.surveyForm.markAsUntouched();
+    if (savedSurvey.id === undefined) {
+      throw new Error('Saved survey is missing an ID.');
+    }
+
+    this.isPublishConfirmationVisible.set(true);
+    this.publishConfirmationTimeout = setTimeout(() => {
+      this.dialogService.closeCreateSurveyDialog();
+      void this.router.navigate(['/vote', savedSurvey.id]);
+    }, 3_000);
   }
 
   ngOnDestroy() {
@@ -100,18 +105,6 @@ export class SurveyForm implements OnDestroy {
       default:
         break;
     }
-  }
-
-  private showPublishConfirmation() {
-    if (this.publishConfirmationTimeout) {
-      clearTimeout(this.publishConfirmationTimeout);
-    }
-
-    this.isPublishConfirmationVisible.set(true);
-    this.publishConfirmationTimeout = setTimeout(() => {
-      this.isPublishConfirmationVisible.set(false);
-      this.publishConfirmationTimeout = undefined;
-    }, 4_000);
   }
 
   /** Returns the selected end date or one calendar year from today when none is supplied. */

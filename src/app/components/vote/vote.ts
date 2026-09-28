@@ -1,5 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, inject, OnDestroy, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { DialogService } from '../shared/services/dialog.service';
 import { Button } from '../shared/button/button';
 import { VoteContent } from './vote-content/vote-content';
@@ -7,7 +8,7 @@ import { SurveyResults } from './survey-results/survey-results';
 
 @Component({
   selector: 'app-vote',
-  imports: [Button, VoteContent, SurveyResults],
+  imports: [Button, VoteContent, SurveyResults, RouterLink],
   templateUrl: './vote.html',
   styleUrl: './vote.scss',
 })

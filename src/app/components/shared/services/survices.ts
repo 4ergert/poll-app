@@ -62,7 +62,7 @@ export class Survices implements OnDestroy {
   }
 
   /** Persists a new survey and merges the returned row into local state. */
-  async saveSurvey(survey: SurveyModel) {
+  async saveSurvey(survey: SurveyModel): Promise<Survey> {
     const { data, error } = await this.supabase
       .from('Survey_Form')
       .insert(survey)
@@ -74,6 +74,7 @@ export class Survices implements OnDestroy {
     }
 
     this.upsertSurvey(data);
+    return data;
   }
 
   /** Merges a submitted vote into the stored vote totals for a survey. */
