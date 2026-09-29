@@ -91,6 +91,15 @@
     grid-column: 1 / -1;
     justify-self: end;
   }
+
+  &__already_voted {
+    grid-column: 1 / -1;
+    justify-self: end;
+    color: #72524a;
+    font-family: Mulish, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+  }
 }
 
 .vote_section {

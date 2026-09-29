@@ -24,7 +24,7 @@
       @for (answer of survey.answers; track $index; let answerIndex = $index) {
       @if (hasControl(questionIndex, answerIndex)) {
       <section class="vote_section">
-        @if (isSurveyActive(selectedSurvey.date)) {
+        @if (isSurveyActive(selectedSurvey.date) && !isSurveyCompleted()) {
         <input type="checkbox" [id]="getControlName(questionIndex, answerIndex)"
           [formControlName]="getControlName(questionIndex, answerIndex)"
           (change)="onAnswerChange(questionIndex, answerIndex, survey.multipleChoice, survey.answers.length, $any($event.target).checked)">
@@ -43,6 +43,9 @@
     >
       {{ isSurveyCompleted() || !isSurveyActive(selectedSurvey.date) ? 'Back to home' : 'Complete survey' }}
     </sec-button>
+    @if (isSurveyCompleted()) {
+      <p class="vote_content__already_voted">You have already voted this survey.</p>
+    }
   </form>
 
   } @else {

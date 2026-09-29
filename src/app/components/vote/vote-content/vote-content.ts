@@ -46,6 +46,7 @@ export class VoteContent {
 
   async ngOnInit() {
     await this.survices.getSurveys();
+    this.isSurveyCompleted.set(this.hasVotedForSurvey());
   }
 
   private addVoteControls(survey: Survey) {
@@ -94,6 +95,7 @@ export class VoteContent {
 
     const vote = new VoteModel(survey, this.voteForm.getRawValue());
     await this.survices.updateVote(survey.id, vote);
+    localStorage.setItem(this.getVoteStorageKey(survey.id), 'true');
     this.voteForm.disable();
     this.isSurveyCompleted.set(true);
     this.votePreviewChange.emit({});
@@ -124,5 +126,14 @@ export class VoteContent {
   /** Returns the stable form-control name for an answer choice. */
   getControlName(questionIndex: number, answerIndex: number): string {
     return VoteModel.getControlName(questionIndex, answerIndex);
+  }
+
+  private hasVotedForSurvey(): boolean {
+    return this.surveyId !== null
+      && localStorage.getItem(this.getVoteStorageKey(this.surveyId)) === 'true';
+  }
+
+  private getVoteStorageKey(surveyId: string | number): string {
+    return `poll-app.survey.${surveyId}.voted`;
   }
 }
