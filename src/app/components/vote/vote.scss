@@ -27,6 +27,12 @@
   display: flex;
   gap: 42px;
   align-items: flex-end;
+  justify-content: space-between;
+
+  > vote-content {
+    flex: 1 1 0;
+    min-width: 0;
+  }
 }
 
 .survey_results_toggle {
@@ -98,6 +104,10 @@
   survey-results.survey_results--hidden {
     display: none;
   }
+}
+
+.vote_content {
+  width: 100%;
 }
 
 @media (max-width: 900px) {

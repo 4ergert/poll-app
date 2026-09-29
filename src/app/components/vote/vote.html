@@ -12,7 +12,7 @@
     </header>
 
     <section class="vote_content_and_survey_results">
-      <vote-content (votePreviewChange)="updateVotePreview($event)"></vote-content>
+      <vote-content class="vote_content" (votePreviewChange)="updateVotePreview($event)"></vote-content>
       <div class="survey_results_panel">
         <button type="button" class="survey_results_toggle" [attr.aria-expanded]="areSurveyResultsVisible()"
           aria-controls="survey-results" (click)="toggleSurveyResults()">
