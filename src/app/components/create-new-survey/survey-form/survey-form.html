@@ -16,7 +16,7 @@
           <div>
             <label for="date">Set end date <span>(optional)</span></label>
             <div class="input_with_delete">
-              <input id="date" formControlName="date" type="date">
+              <input id="date" formControlName="date" type="date" [min]="minimumEndDate">
               <trashcan (click)="delete('date')" />
             </div>
           </div>

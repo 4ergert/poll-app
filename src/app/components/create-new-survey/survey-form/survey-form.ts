@@ -20,6 +20,7 @@ import { DialogService } from '../../shared/services/dialog.service';
 export class SurveyForm implements OnDestroy {
   readonly categories = SURVEY_CATEGORIES;
   readonly isPublishConfirmationVisible = signal(false);
+  readonly minimumEndDate = this.getDateInputValue(new Date());
   surveyForm = new FormGroup(
     {
       name: new FormControl('', Validators.required),
@@ -110,11 +111,26 @@ export class SurveyForm implements OnDestroy {
   /** Returns the selected end date or one calendar year from today when none is supplied. */
   private getEndDate(date: string | null): Date {
     if (date) {
-      return new Date(`${date}T00:00:00`);
+      const endDate = new Date(`${date}T00:00:00`);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      if (endDate < today) {
+        throw new Error('The survey end date cannot be in the past.');
+      }
+
+      return endDate;
     }
 
     const endDate = new Date();
     endDate.setFullYear(endDate.getFullYear() + 1);
     return endDate;
+  }
+
+  private getDateInputValue(date: Date): string {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
   }
 }
