@@ -4,10 +4,11 @@ import { EndingSurvey } from './ending-survey/ending-survey';
 import { Survices } from '../../../shared/services/survices';
 import { getEndsInDays } from '../../../shared/utils/date';
 import { getEndingSoonSurveys } from '../../../shared/utils/survey';
+import { MaxCharPipe } from '../../../shared/pipes/max-char-pipe';
 
 @Component({
   selector: 'app-ending-soon',
-  imports: [EndingSurvey, RouterLink],
+  imports: [EndingSurvey, RouterLink, MaxCharPipe],
   templateUrl: './ending-soon.html',
   styleUrl: './ending-soon.scss',
 })

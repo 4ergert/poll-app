@@ -6,7 +6,7 @@
       <ending-survey [routerLink]="['/vote', survey.id]">
         <div class="ending_survey__header">
           <p class="ending_survey__category">{{ survey.category }}</p>
-          <h4>{{ survey.name }}</h4>
+          <h4>{{ survey.name | maxChar: 30}}</h4>
         </div>
         <p class="ending_survey__ends_in">Ends in {{ getEndsInDays(survey.date) }} days</p>
       </ending-survey>

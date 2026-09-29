@@ -63,3 +63,9 @@
     flex: 0 0 310px;
   }
 }
+
+@media (max-width: 420px) {
+  #genEndingSurvey > ending-survey {
+    flex-basis: 250px;
+  }
+}

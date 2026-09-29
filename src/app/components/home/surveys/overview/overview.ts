@@ -1,16 +1,16 @@
 import { DatePipe } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
+import { MaxCharPipe } from '../../../shared/pipes/max-char-pipe';
 import { RouterLink } from '@angular/router';
 import { DropdownMenu } from '../dropdown-menu/dropdown-menu';
 import { Card } from './card/card';
 import { Survices } from '../../../shared/services/survices';
-import { Survey } from '../../../shared/interfaces/survey';
 import { getEndsInDays, isSurveyActive } from '../../../shared/utils/date';
 import { OverviewButton } from './button/button';
 
 @Component({
   selector: 'app-overview',
-  imports: [DropdownMenu, Card, OverviewButton, RouterLink, DatePipe],
+  imports: [DropdownMenu, Card, OverviewButton, RouterLink, DatePipe, MaxCharPipe],
   templateUrl: './overview.html',
   styleUrl: './overview.scss',
 })

@@ -21,7 +21,7 @@
       <survey-card class="survey_card" [routerLink]="['/vote', survey.id]">
         <div>
           <p class="survey_card__category"> {{ survey.category }} </p>
-          <h5 class="survey_card__h5"> {{ survey.name }} </h5>
+          <h5 class="survey_card__h5"> {{ survey.name | maxChar: 30}} </h5>
         </div>
         @if (isSurveyActive(survey.date)) {
           <p class="survey_card__ends-in">Ends in {{ getEndsInDays(survey.date) }} days</p>
