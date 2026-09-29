@@ -20,7 +20,7 @@
     @for (survey of displayedSurveys(); track survey.id) {
       <survey-card class="survey_card" [routerLink]="['/vote', survey.id]">
         <div>
-          <p class="survey_card__category"> {{ survey.category }} </p>
+          <p class="survey_card__category"> {{ survey.category | andMark | firstCharUpperCase }} </p>
           <h5 class="survey_card__h5"> {{ survey.name | maxChar: 30}} </h5>
         </div>
         @if (isSurveyActive(survey.date)) {

@@ -5,10 +5,12 @@ import { Survices } from '../../../shared/services/survices';
 import { getEndsInDays } from '../../../shared/utils/date';
 import { getEndingSoonSurveys } from '../../../shared/utils/survey';
 import { MaxCharPipe } from '../../../shared/pipes/max-char-pipe';
+import { AndMarkPipe } from '../../../shared/pipes/and-to-char-pipe';
+import { FirstCharUpperCasePipe } from '../../../shared/pipes/first-char-upper-case-pipe';
 
 @Component({
   selector: 'app-ending-soon',
-  imports: [EndingSurvey, RouterLink, MaxCharPipe],
+  imports: [EndingSurvey, RouterLink, MaxCharPipe, AndMarkPipe, FirstCharUpperCasePipe],
   templateUrl: './ending-soon.html',
   styleUrl: './ending-soon.scss',
 })
