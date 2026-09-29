@@ -9,9 +9,12 @@
       </div>
     </div>
     <p class="input_with_delete">
-      <input id="question{{ questionNumber() }}" type="text" formControlName="question" required>
+      <input id="question{{ questionNumber() }}" type="text" formControlName="question" maxlength="200" required>
       <trashcan (click)="delete('question')" />
     </p>
+    @if (questionForm().controls.question.value?.length === 200) {
+      <p class="validation_message">max. of 200 characters</p>
+    }
     @if (questionForm().controls.question.invalid && questionForm().controls.question.touched) {
       <p class="validation_message" role="alert">This field is required.</p>
     }
@@ -21,9 +24,12 @@
       @for (answer of answers.controls; track $index) {
         <div class="answer_field">
           <p class="input_with_delete">{{ getAnswerLabel($index) }}. <input
-              id="answer{{ questionNumber() }}Index{{ $index }}" type="text" [formControlName]="$index" required>
+              id="answer{{ questionNumber() }}Index{{ $index }}" type="text" [formControlName]="$index" maxlength="200" required>
             <trashcan (click)="delete('answers', $index)" />
           </p>
+          @if (answer.value?.length === 200) {
+            <p class="validation_message">max. of 200 characters</p>
+          }
           @if (answer.invalid && answer.touched) {
             <p class="validation_message" role="alert">This field is required.</p>
           }

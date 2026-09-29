@@ -25,7 +25,7 @@ export class AddQuestion {
 
   /** Appends a required, initially empty answer control. */
   addAnswer() {
-    this.answers.push(new FormControl('', Validators.required));
+    this.answers.push(new FormControl('', [Validators.required, Validators.maxLength(200)]));
   }
 
   get answers() {
@@ -54,7 +54,7 @@ export class AddQuestion {
           }
         } else {
           this.answers.clear();
-          this.answers.push(new FormControl('', Validators.required));
+          this.answers.push(new FormControl('', [Validators.required, Validators.maxLength(200)]));
         }
 
         break;

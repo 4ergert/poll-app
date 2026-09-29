@@ -6,11 +6,16 @@
       <div class="fieldset_header_left">
         <label for="name">Survey Name</label>
         <div class="input_with_delete">
-          <input id="name" formControlName="name" type="text" required />
+          <input id="name" formControlName="name" type="text" maxlength="50" required />
           <trashcan (click)="delete('name')"/>
         </div>
+        @if (surveyForm.controls.name.value?.length === 50) {
+          <p class="validation_message">max. of 50 characters</p>
+        }
         @if (surveyForm.controls.name.invalid && surveyForm.controls.name.touched) {
-          <p class="validation_message" role="alert">This field is required.</p>
+          <p class="validation_message" role="alert">
+            {{ surveyForm.controls.name.hasError('maxlength') ? 'A survey name can contain up to 50 characters.' : 'This field is required.' }}
+          </p>
         }
         <div class="date_and_category">
           <div>
@@ -38,9 +43,12 @@
       <div class="fieldset_header_right">
         <label for="describing">Describing text <span>(optional)</span></label>
         <div class="input_with_delete">
-          <textarea id="describing" formControlName="describing"></textarea>
+          <textarea id="describing" formControlName="describing" maxlength="500"></textarea>
           <trashcan (click)="delete('describing')" />
         </div>
+        @if (surveyForm.controls.describing.value?.length === 500) {
+          <p class="validation_message">max. of 500 characters</p>
+        }
       </div>
     </section>
     <!-- Questions and answers -->

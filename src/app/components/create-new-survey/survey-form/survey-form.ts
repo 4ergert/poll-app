@@ -23,10 +23,10 @@ export class SurveyForm implements OnDestroy {
   readonly minimumEndDate = this.getDateInputValue(new Date());
   surveyForm = new FormGroup(
     {
-      name: new FormControl('', Validators.required),
+      name: new FormControl('', [Validators.required, Validators.maxLength(50)]),
       date: new FormControl<string | null>(null),
       category: new FormControl('', Validators.required),
-      describing: new FormControl(''),
+      describing: new FormControl('', Validators.maxLength(500)),
       questions: new FormArray([this.createQuestionForm()]),
     }
   );
@@ -82,11 +82,11 @@ export class SurveyForm implements OnDestroy {
 
   private createQuestionForm(): QuestionForm {
     return new FormGroup({
-      question: new FormControl('', Validators.required),
+      question: new FormControl('', [Validators.required, Validators.maxLength(200)]),
       multipleChoice: new FormControl(false),
       answers: new FormArray([
-        new FormControl('', Validators.required),
-        new FormControl('', Validators.required),
+        new FormControl('', [Validators.required, Validators.maxLength(200)]),
+        new FormControl('', [Validators.required, Validators.maxLength(200)]),
       ]),
     });
   }
