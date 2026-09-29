@@ -3,10 +3,8 @@
         <img src="assets/img/draft.png" width="59px" height="26px" alt="Draft Image">
         <h3>Create new survey</h3>
       </div>
-      <div class="cancel-button">
-        <sec-button (click)="close.emit()">
-          <span class="cancel-button__label">Cancel</span>
-          <img src="assets/icons/cancel_icon.png" width="24px" height="24px" alt="Cancel Icon">
-        </sec-button>
-      </div>
+      <button type="button" class="cancel-button" aria-label="Cancel survey creation" (click)="close.emit()">
+        <span class="cancel-button__label">Cancel</span>
+        <img src="assets/icons/cancel_icon.png" width="24px" height="24px" alt="">
+      </button>
     </header>

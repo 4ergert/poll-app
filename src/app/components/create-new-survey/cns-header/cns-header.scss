@@ -11,10 +11,23 @@ header {
 }
 
 .cancel-button {
-  align-self: stretch;
+  align-self: flex-end;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 10px;
+  background-color: #72524a;
+  color: aliceblue;
+  cursor: pointer;
+  font-family: Nokora, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+
+  &:hover {
+    background-color: #ffb770c6;
+  }
 }
 
 @media (max-width: 550px) {
@@ -24,8 +37,6 @@ header {
   }
 
   .cancel-button {
-    justify-content: flex-start;
-
     &__label {
       display: none;
     }

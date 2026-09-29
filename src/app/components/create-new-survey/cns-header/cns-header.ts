@@ -1,9 +1,8 @@
 import { Component, output } from '@angular/core';
-import { SecButton } from '../../shared/sec-button/sec-button';
 
 @Component({
   selector: 'cns-header',
-  imports: [SecButton],
+  imports: [],
   templateUrl: './cns-header.html',
   styleUrl: './cns-header.scss',
 })

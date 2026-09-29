@@ -13,6 +13,11 @@ app-root {
   min-width: 0;
 }
 
+html.dialog-open,
+body.dialog-open {
+  overflow: hidden;
+}
+
 body.page-home {
   background-color: base.$dark-purple;
 }
