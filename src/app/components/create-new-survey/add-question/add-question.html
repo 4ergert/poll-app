@@ -1,15 +1,19 @@
 <section class="question_editor" [formGroup]="questionForm()">
   <div class="question_fields">
     <div class="question_header">
-      <label for="question{{ questionNumber() }}">{{ questionNumber() }}. Question </label>
-      <div class="multiple_choice">
-        <input id="multipleChoice{{ questionNumber() }}" type="checkbox" formControlName="multipleChoice" />
-        <label for="multipleChoice{{ questionNumber() }}">Allow multiple answers.</label>
-      </div>
+      <label for="question{{ questionNumber() }}" [attr.aria-label]="questionNumber() + '. Question'">
+        {{ questionNumber() }}. Question
+        <trashcan
+          class="trashcan_in_question_label"
+          [ariaLabel]="questionForm().controls.question.value?.trim() ? 'Delete content' : 'Delete question'"
+          [tooltip]="questionForm().controls.question.value?.trim() ? 'Delete content' : 'Delete question'"
+          (click)="delete('question')" />
+      </label>
     </div>
     <p class="input_with_delete">
       <input id="question{{ questionNumber() }}" type="text" formControlName="question" maxlength="200" required />
       <trashcan
+        class="trashcan_next_to_question_input"
         [ariaLabel]="questionForm().controls.question.value?.trim() ? 'Delete content' : 'Delete question'"
         [tooltip]="questionForm().controls.question.value?.trim() ? 'Delete content' : 'Delete question'"
         (click)="delete('question')" />
@@ -21,11 +25,17 @@
     <p class="validation_message" role="alert">This field is required.</p>
     }
 
-    <label for="answer">Answer</label>
+    <div class="answer_header">
+      <label for="answer">Answer</label>
+      <div class="multiple_choice">
+        <input id="multipleChoice{{ questionNumber() }}" type="checkbox" formControlName="multipleChoice" />
+        <label for="multipleChoice{{ questionNumber() }}">Allow multiple answers.</label>
+      </div>
+    </div>
     <div class="answers" formArrayName="answers">
       @for (answer of answers.controls; track answer) {
       <div class="answer_field">
-        <p class="input_with_delete">
+        <p class="input_with_delete answer_input_with_delete">
           {{ getAnswerLabel($index) }}.
           <input id="answer{{ questionNumber() }}Index{{ $index }}" type="text" [formControlName]="$index"
             maxlength="200" required />

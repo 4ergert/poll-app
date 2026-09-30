@@ -4,10 +4,13 @@
     <section class="fieldset_header">
       <!-- Form header left -->
       <div class="fieldset_header_left">
-        <label for="name">Survey Name</label>
-        <div class="input_with_delete">
+        <div class="field_with_delete">
+          <label for="name" aria-label="Survey Name">
+            Survey Name
+            <trashcan class="trashcan_in_label" (click)="delete('name')"/>
+          </label>
+          <trashcan class="trashcan_next_to_input" (click)="delete('name')"/>
           <input id="name" formControlName="name" type="text" maxlength="50" required />
-          <trashcan (click)="delete('name')"/>
         </div>
         @if (surveyForm.controls.name.value?.length === 50) {
           <p class="validation_message">max. of 50 characters</p>
@@ -19,10 +22,13 @@
         }
         <div class="date_and_category">
           <div>
-            <label for="date">Set end date <span>(optional)</span></label>
-            <div class="input_with_delete">
+            <div class="field_with_delete">
+              <label for="date" aria-label="Set end date optional">
+                <div>Set end date <span>(optional)</span></div>
+                <trashcan class="trashcan_in_label" (click)="delete('date')" />
+              </label>
+              <trashcan class="trashcan_next_to_input" (click)="delete('date')" />
               <input id="date" formControlName="date" type="date" [min]="minimumEndDate">
-              <trashcan (click)="delete('date')" />
             </div>
             @if (surveyForm.controls.date.invalid && surveyForm.controls.date.touched) {
               <p class="validation_message" role="alert">end date cannot be in the past.</p>
@@ -44,10 +50,13 @@
       </div>
       <!-- Form header right -->
       <div class="fieldset_header_right">
-        <label for="describing">Describing text <span>(optional)</span></label>
-        <div class="input_with_delete">
+        <div class="field_with_delete">
+          <label for="describing" aria-label="Describing text optional">
+            <div>Describing text <span>(optional)</span></div>
+            <trashcan class="trashcan_in_label" (click)="delete('describing')" />
+          </label>
+          <trashcan class="trashcan_next_to_input" (click)="delete('describing')" />
           <textarea id="describing" formControlName="describing" maxlength="500"></textarea>
-          <trashcan (click)="delete('describing')" />
         </div>
         @if (surveyForm.controls.describing.value?.length === 500) {
           <p class="validation_message">max. of 500 characters</p>

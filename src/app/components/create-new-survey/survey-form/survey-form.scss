@@ -58,16 +58,27 @@ input {
   font-size: 20px;
 }
 
-.input_with_delete {
-  display: flex;
+.field_with_delete {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 8px;
   width: 100%;
   align-items: center;
-  gap: 8px;
 
   input,
   textarea {
-    flex: 1;
+    grid-column: 1;
+    grid-row: 2;
     min-width: 0;
+  }
+
+  trashcan {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .trashcan_in_label {
+    display: none;
   }
 }
 
@@ -190,7 +201,7 @@ textarea {
 
 @media (max-width: 1100px) {
   fieldset {
-    padding: 10px;
+    padding: 40px 10px;
   }
 
   .fieldset_header {
@@ -211,5 +222,35 @@ textarea {
 
   .add_question {
     grid-template-columns: none;
+  }
+}
+
+@media (max-width: 650px) {
+  .submit_button {
+    justify-content: center;
+  }
+
+  .field_with_delete {
+    display: block;
+
+    label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    input,
+    textarea {
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .trashcan_in_label {
+      display: block;
+    }
+
+    .trashcan_next_to_input {
+      display: none;
+    }
   }
 }
