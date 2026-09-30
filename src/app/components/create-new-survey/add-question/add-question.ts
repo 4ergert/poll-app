@@ -1,7 +1,8 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Trashcan } from '../../shared/trashcan/trashcan';
 import { getAnswerLabel as getAnswerLabelForIndex } from '../../shared/utils/answer-label';
+import { trimmedRequired } from '../../shared/utils/trimmed-required';
 import { AddAnswerButton } from '../add-answer-button/add-answer-button';
 
 /** Typed reactive-form structure for a survey question and its answers. */
@@ -21,11 +22,12 @@ export type QuestionForm = FormGroup<{
 export class AddQuestion {
   readonly questionForm = input.required<QuestionForm>();
   readonly questionNumber = input.required<number>();
+  readonly removeQuestion = output<void>();
   readonly getAnswerLabel = getAnswerLabelForIndex;
 
   /** Appends a required, initially empty answer control. */
   addAnswer() {
-    this.answers.push(new FormControl('', [Validators.required, Validators.maxLength(200)]));
+    this.answers.push(new FormControl('', [trimmedRequired, Validators.maxLength(200)]));
   }
 
   get answers() {
@@ -33,7 +35,7 @@ export class AddQuestion {
   }
 
   /**
-   * Clears a question or removes an empty answer.
+   * Clears a populated question, removes an empty question, or removes an empty answer.
    *
    * @param field - The question field to update.
    * @param index - The answer index when updating an answer.
@@ -41,7 +43,11 @@ export class AddQuestion {
   delete(field: string, index?: number) {
     switch (field) {
       case 'question':
-        this.questionForm().controls.question.reset('');
+        if (this.questionForm().controls.question.value?.trim()) {
+          this.questionForm().controls.question.reset('');
+        } else {
+          this.removeQuestion.emit();
+        }
         break;
       case 'answers':
         if (index !== undefined) {
@@ -54,7 +60,7 @@ export class AddQuestion {
           }
         } else {
           this.answers.clear();
-          this.answers.push(new FormControl('', [Validators.required, Validators.maxLength(200)]));
+          this.answers.push(new FormControl('', [trimmedRequired, Validators.maxLength(200)]));
         }
 
         break;

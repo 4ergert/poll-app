@@ -7,11 +7,23 @@
   justify-content: center;
   overflow-y: auto;
   box-sizing: border-box;
-  padding: 72px 24px;
-  background-color: #fff;
+  padding: 72px 160px;
+  background-color: rgba(0, 0, 0, 0.509);
 }
 
-@media (max-width: 550px) {
+@media (max-width: 1350px) {
+  .dialog_overlay {
+    padding: 100px;
+  }
+}
+
+@media (max-width: 1050px) {
+  .dialog_overlay {
+    padding: 50px;
+  }
+}
+
+@media (max-width: 650px) {
   .dialog_overlay {
     padding: 0;
   }

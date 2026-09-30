@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'trashcan',
@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './trashcan.scss',
 })
 /** Presentational trash-can icon used by delete controls. */
-export class Trashcan {}
+export class Trashcan {
+  readonly ariaLabel = input('Frage löschen');
+  readonly tooltip = input<string>();
+}

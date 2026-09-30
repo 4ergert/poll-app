@@ -1,1 +1,6 @@
-<button type="button" class="trashcan" aria-label="Frage löschen"></button>
+<button
+  type="button"
+  class="trashcan"
+  [attr.aria-label]="ariaLabel()"
+  [attr.title]="tooltip()"
+></button>

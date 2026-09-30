@@ -43,3 +43,8 @@ button:hover #buttonImgCheck {
   visibility: visible;
   transition-delay: 0s;
 }
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}

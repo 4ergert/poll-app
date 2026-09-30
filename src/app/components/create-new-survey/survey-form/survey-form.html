@@ -24,6 +24,9 @@
               <input id="date" formControlName="date" type="date" [min]="minimumEndDate">
               <trashcan (click)="delete('date')" />
             </div>
+            @if (surveyForm.controls.date.invalid && surveyForm.controls.date.touched) {
+              <p class="validation_message" role="alert">end date cannot be in the past.</p>
+            }
           </div>
         
           <div>
@@ -57,6 +60,7 @@
         <add-question
           [questionForm]="questionForm"
           [questionNumber]="$index + 1"
+          (removeQuestion)="removeQuestion($index)"
         ></add-question>
       }
 
@@ -71,7 +75,7 @@
 
 
   <section class="submit_button">
-    <poll-app-button type="submit" icon="check">Publish</poll-app-button>
+    <poll-app-button type="submit" icon="check" [disabled]="isPublishing()">Publish</poll-app-button>
     @if (isPublishConfirmationVisible()) {
       <aside class="publish_confirmation" role="status" aria-live="polite">
         Your survey is now published

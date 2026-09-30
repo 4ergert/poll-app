@@ -103,6 +103,26 @@ p {
   font-family: Mulish;
   font-size: 14px;
   font-weight: 400;
+  overflow: hidden;
+  animation: reveal-validation-message 180ms ease-out;
+}
+
+@keyframes reveal-validation-message {
+  from {
+    max-height: 0;
+    opacity: 0;
+  }
+
+  to {
+    max-height: 56px;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .validation_message {
+    animation: none;
+  }
 }
 
 @media (max-width: 550px) {

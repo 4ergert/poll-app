@@ -8,6 +8,8 @@ import { SecButton } from '../../shared/sec-button/sec-button';
 import { Survices } from '../../shared/services/survices';
 import { SurveyModel } from '../../shared/models/surveymodel';
 import { SURVEY_CATEGORIES } from '../../shared/utils/survey-categories';
+import { trimmedRequired } from '../../shared/utils/trimmed-required';
+import { notPastDate } from '../../shared/utils/not-past-date';
 import { DialogService } from '../../shared/services/dialog.service';
 
 @Component({
@@ -20,11 +22,12 @@ import { DialogService } from '../../shared/services/dialog.service';
 export class SurveyForm implements OnDestroy {
   readonly categories = SURVEY_CATEGORIES;
   readonly isPublishConfirmationVisible = signal(false);
+  readonly isPublishing = signal(false);
   readonly minimumEndDate = this.getDateInputValue(new Date());
   surveyForm = new FormGroup(
     {
-      name: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-      date: new FormControl<string | null>(null),
+      name: new FormControl('', [trimmedRequired, Validators.maxLength(50)]),
+      date: new FormControl<string | null>(null, notPastDate),
       category: new FormControl('', Validators.required),
       describing: new FormControl('', Validators.maxLength(500)),
       questions: new FormArray([this.createQuestionForm()]),
@@ -38,6 +41,10 @@ export class SurveyForm implements OnDestroy {
 
   /** Validates and persists the survey, then resets the form after success. */
   async onSubmit() {
+    if (this.isPublishing()) {
+      return;
+    }
+
     if (this.surveyForm.invalid) {
       this.surveyForm.markAllAsTouched();
       return;
@@ -56,17 +63,25 @@ export class SurveyForm implements OnDestroy {
       })),
     });
 
-    const savedSurvey = await this.surveyService.saveSurvey(surveyData);
+    this.isPublishing.set(true);
 
-    if (savedSurvey.id === undefined) {
-      throw new Error('Saved survey is missing an ID.');
+    try {
+      const savedSurvey = await this.surveyService.saveSurvey(surveyData);
+
+      if (savedSurvey.id === undefined) {
+        throw new Error('Saved survey is missing an ID.');
+      }
+
+      this.isPublishConfirmationVisible.set(true);
+      this.publishConfirmationTimeout = setTimeout(() => {
+        this.dialogService.closeCreateSurveyDialog();
+        void this.router.navigate(['/vote', savedSurvey.id]);
+      }, 3_000);
+    } finally {
+      if (!this.isPublishConfirmationVisible()) {
+        this.isPublishing.set(false);
+      }
     }
-
-    this.isPublishConfirmationVisible.set(true);
-    this.publishConfirmationTimeout = setTimeout(() => {
-      this.dialogService.closeCreateSurveyDialog();
-      void this.router.navigate(['/vote', savedSurvey.id]);
-    }, 3_000);
   }
 
   ngOnDestroy() {
@@ -80,13 +95,18 @@ export class SurveyForm implements OnDestroy {
     this.questions.push(this.createQuestionForm());
   }
 
+  /** Removes the question at the provided index. */
+  removeQuestion(index: number) {
+    this.questions.removeAt(index);
+  }
+
   private createQuestionForm(): QuestionForm {
     return new FormGroup({
-      question: new FormControl('', [Validators.required, Validators.maxLength(200)]),
+      question: new FormControl('', [trimmedRequired, Validators.maxLength(200)]),
       multipleChoice: new FormControl(false),
       answers: new FormArray([
-        new FormControl('', [Validators.required, Validators.maxLength(200)]),
-        new FormControl('', [Validators.required, Validators.maxLength(200)]),
+        new FormControl('', [trimmedRequired, Validators.maxLength(200)]),
+        new FormControl('', [trimmedRequired, Validators.maxLength(200)]),
       ]),
     });
   }
@@ -112,13 +132,6 @@ export class SurveyForm implements OnDestroy {
   private getEndDate(date: string | null): Date {
     if (date) {
       const endDate = new Date(`${date}T00:00:00`);
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-
-      if (endDate < today) {
-        throw new Error('The survey end date cannot be in the past.');
-      }
-
       return endDate;
     }
 
