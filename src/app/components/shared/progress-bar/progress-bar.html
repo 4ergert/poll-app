@@ -1,3 +1,10 @@
-<progress class="progress-bar" [value]="value()" [max]="max()">
-  <ng-content></ng-content>
-</progress>
+<div
+  class="progress-bar"
+  role="progressbar"
+  aria-valuemin="0"
+  [attr.aria-valuenow]="value()"
+  [attr.aria-valuemax]="max()"
+>
+  <div class="progress-bar__value" [style.width.%]="percentage()"></div>
+  <span class="visually-hidden"><ng-content></ng-content></span>
+</div>
