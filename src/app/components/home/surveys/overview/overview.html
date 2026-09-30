@@ -17,18 +17,24 @@
     <dropdown-menu (categorySelected)="selectCategory($event)"></dropdown-menu>
   </div>
   <section id="surveysOverview">
-    @for (survey of displayedSurveys(); track survey.id) {
-      <survey-card class="survey_card" [routerLink]="['/vote', survey.id]">
-        <div>
-          <p class="survey_card__category"> {{ survey.category | andMark | firstCharUpperCase }} </p>
-          <h5 class="survey_card__h5"> {{ survey.name | maxChar: 30}} </h5>
-        </div>
-        @if (isSurveyActive(survey.date)) {
-          <p class="survey_card__ends-in">Ends in {{ getEndsInDays(survey.date) }} days</p>
-        } @else {
-          <p class="survey_card__ends-in">Ended on {{ survey.date | date:'mediumDate' }}</p>
-        }
-      </survey-card>
+    @if (isLoading()) {
+      <p class="empty_surveys" role="status">Loading surveys...</p>
+    } @else if (displayedSurveys().length === 0) {
+      <p class="empty_surveys" role="status">no surveys found in this category.</p>
+    } @else {
+      @for (survey of displayedSurveys(); track survey.id) {
+        <survey-card class="survey_card" [routerLink]="['/vote', survey.id]">
+          <div>
+            <p class="survey_card__category"> {{ survey.category | andMark | firstCharUpperCase }} </p>
+            <h5 class="survey_card__h5"> {{ survey.name | maxChar: 30}} </h5>
+          </div>
+          @if (isSurveyActive(survey.date)) {
+            <p class="survey_card__ends-in">Ends in {{ getEndsInDays(survey.date) }} days</p>
+          } @else {
+            <p class="survey_card__ends-in">Ended on {{ survey.date | date:'mediumDate' }}</p>
+          }
+        </survey-card>
+      }
     }
   </section>
 </section>

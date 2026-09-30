@@ -10,14 +10,23 @@
             <trashcan class="trashcan_in_label" (click)="delete('name')"/>
           </label>
           <trashcan class="trashcan_next_to_input" (click)="delete('name')"/>
-          <input id="name" formControlName="name" type="text" maxlength="50" required />
+          <input
+            id="name"
+            formControlName="name"
+            type="text"
+            maxlength="50"
+            required
+            [class.required_input]="surveyForm.controls.name.invalid && surveyForm.controls.name.touched"
+            [placeholder]="surveyForm.controls.name.invalid && surveyForm.controls.name.touched ? 'This field is required.' : ''"
+            [attr.aria-invalid]="surveyForm.controls.name.invalid && surveyForm.controls.name.touched"
+          />
         </div>
         @if (surveyForm.controls.name.value?.length === 50) {
           <p class="validation_message">max. of 50 characters</p>
         }
-        @if (surveyForm.controls.name.invalid && surveyForm.controls.name.touched) {
+        @if (surveyForm.controls.name.hasError('maxlength') && surveyForm.controls.name.touched) {
           <p class="validation_message" role="alert">
-            {{ surveyForm.controls.name.hasError('maxlength') ? 'A survey name can contain up to 50 characters.' : 'This field is required.' }}
+            A survey name can contain up to 50 characters.
           </p>
         }
         <div class="date_and_category">
@@ -36,15 +45,22 @@
           </div>
         
           <div>
-            <select class="choose_category" name="choose category" id="chooseCategory" formControlName="category" required>
-              <option value="" hidden selected>Choose category</option>
+            <select
+              class="choose_category"
+              name="choose category"
+              id="chooseCategory"
+              formControlName="category"
+              required
+              [class.required_select]="surveyForm.controls.category.invalid && surveyForm.controls.category.touched"
+              [attr.aria-invalid]="surveyForm.controls.category.invalid && surveyForm.controls.category.touched"
+            >
+              <option value="" hidden selected>
+                {{ surveyForm.controls.category.invalid && surveyForm.controls.category.touched ? 'This field is required.' : 'Choose category' }}
+              </option>
               @for (category of categories; track category.value) {
                 <option [value]="category.value">{{ category.label }}</option>
               }
             </select>
-            @if (surveyForm.controls.category.invalid && surveyForm.controls.category.touched) {
-              <p class="validation_message" role="alert">This field is required.</p>
-            }
           </div>
         </div>
       </div>

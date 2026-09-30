@@ -22,6 +22,7 @@ export class Overview {
   readonly allSurveys = this.surveyService.surveys;
   readonly selectedCategory = signal('allSurveys');
   readonly selectedSurveyStatus = signal<'active' | 'past'>('active');
+  readonly isLoading = signal(true);
   readonly displayedSurveys = computed(() => {
     const selectedCategory = this.selectedCategory();
     const selectedSurveyStatus = this.selectedSurveyStatus();
@@ -40,7 +41,11 @@ export class Overview {
   readonly isSurveyActive = isSurveyActive;
 
   async ngOnInit() {
-    await this.getAllSurveys();
+    try {
+      await this.getAllSurveys();
+    } finally {
+      this.isLoading.set(false);
+    }
   }
 
   /** Refreshes and returns all surveys from the backing service. */

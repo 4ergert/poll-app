@@ -30,6 +30,16 @@
   scrollbar-gutter: stable;
 }
 
+.empty_surveys {
+  grid-column: 1 / -1;
+  align-self: center;
+  margin: 0;
+  color: #fff;
+  font-family: Mulish, sans-serif;
+  font-size: 18px;
+  text-align: center;
+}
+
 .survey_card {
   &__category {
     font-family: Mulish;

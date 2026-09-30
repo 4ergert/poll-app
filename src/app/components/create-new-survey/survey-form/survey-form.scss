@@ -58,6 +58,16 @@ input {
   font-size: 20px;
 }
 
+.required_input::placeholder {
+  color: #ff0000;
+  font-size: 16px;
+  opacity: 1;
+}
+
+.required_select {
+  color: #ff0000 !important;
+}
+
 .field_with_delete {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
